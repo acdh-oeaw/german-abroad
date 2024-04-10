@@ -1,0 +1,64 @@
+---
+import { isNonEmptyArray } from "@acdh-oeaw/lib";
+
+import EventList from "@/components/event-list.astro";
+import MainContent from "@/components/main-content.astro";
+import PageSection from "@/components/page-section.astro";
+import PageSectionTitle from "@/components/page-section-title.astro";
+import PageTitle from "@/components/page-title.astro";
+import { defaultLocale, type Locale } from "@/config/i18n.config";
+import PageLayout from "@/layouts/page-layout.astro";
+import { getEvents } from "@/lib/content/get-events";
+import { processMdx } from "@/lib/content/mdx";
+import { reader } from "@/lib/content/reader";
+import { createI18n } from "@/lib/i18n";
+
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const { t } = await createI18n(locale);
+
+const { content, subtitle, title } = await reader().singletons.indexPage.readOrThrow();
+const { default: Content } = await processMdx(await content(), locale);
+
+const documentTitle = t("IndexPage.meta.title");
+// const title = t("IndexPage.title");
+
+const events = await getEvents();
+
+const futureEvents = t("IndexPage.futureEvents");
+const pastEvents = t("IndexPage.pastEvents");
+---
+
+<PageLayout locale={locale} title={documentTitle}>
+	<MainContent class="grid gap-y-8 py-8">
+		<PageSection class="border-b pb-14">
+			<div class="py-6 xs:pb-12 xs:pt-8">
+				<PageTitle>
+					<div class="mb-2 text-4xl xs:text-5xl">{title}.</div>
+					<div class="text-2xl [text-wrap:auto] xs:text-4xl">{subtitle}</div>
+				</PageTitle>
+			</div>
+
+			<div class="prose prose-neutral">
+				<Content />
+			</div>
+		</PageSection>
+
+		{
+			isNonEmptyArray(events.future) ? (
+				<PageSection>
+					<PageSectionTitle>{futureEvents}</PageSectionTitle>
+					<EventList events={events.future} />
+				</PageSection>
+			) : null
+		}
+
+		{
+			isNonEmptyArray(events.past) ? (
+				<PageSection>
+					<PageSectionTitle>{pastEvents}</PageSectionTitle>
+					<EventList events={events.past} />
+				</PageSection>
+			) : null
+		}
+	</MainContent>
+</PageLayout>

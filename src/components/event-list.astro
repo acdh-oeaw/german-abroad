@@ -1,0 +1,22 @@
+---
+import Event from "@/components/event.astro";
+import type { Event as EventType } from "@/lib/content/types";
+
+interface Props {
+	events: Array<{ slug: string; entry: EventType }>;
+}
+
+const { events } = Astro.props;
+---
+
+<ul class="grid gap-x-8 gap-y-12 md:grid-cols-2" role="list">
+	{
+		events.map((event) => {
+			return (
+				<li>
+					<Event event={event.entry} />
+				</li>
+			);
+		})
+	}
+</ul>
