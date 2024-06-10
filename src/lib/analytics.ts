@@ -1,3 +1,5 @@
+import type { Locale } from "@/config/i18n.config";
+
 declare global {
 	interface Window {
 		_paq?: Array<unknown>;
@@ -22,16 +24,18 @@ export function createAnalyticsScript(baseUrl: string, id: number): void {
 /**
  * Track urls without locale prefix, and separate custom event for locale.
  */
-export function trackPageView(url: URL): void {
+export function trackPageView(url: URL, locale: Locale): void {
+	/** @see https://developer.matomo.org/guides/tracking-javascript-guide#custom-variables */
+	window._paq?.push(["setCustomVariable", 1, "Locale", locale, "page"]);
 	window._paq?.push(["setCustomUrl", url]);
 	window._paq?.push(["trackPageView"]);
 	window._paq?.push(["enableLinkTracking"]);
 }
 
-export function initAnalytics() {
+export function initAnalytics(locale: Locale) {
 	function onPageLoad() {
 		const url = new URL(window.location.href);
-		trackPageView(url);
+		trackPageView(url, locale);
 	}
 
 	/** Track page views with `ViewTransitions`. */

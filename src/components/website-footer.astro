@@ -1,5 +1,5 @@
 ---
-import Link from "@/components/navigation/nav-link.astro";
+import Link from "@/components/link.astro";
 import type { Locale } from "@/config/i18n.config";
 import { createI18n } from "@/lib/i18n";
 
@@ -9,11 +9,11 @@ const imprint = t("WebsiteFooter.links.imprint");
 ---
 
 <footer class="border-t">
-	<div class="mx-auto flex w-full max-w-screen-md items-center justify-between px-4 py-6 text-sm">
+	<div class="mx-auto flex w-full max-w-screen-lg items-center justify-between px-4 py-6 text-sm">
 		<div>
 			<Link
 				class="underline decoration-dotted underline-offset-4 hover:no-underline"
-				href="/imprint"
+				href="/imprint/"
 			>
 				{imprint}
 			</Link>

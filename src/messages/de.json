@@ -10,8 +10,36 @@
 	"ContactForm": {
 		"email": "Email-Adresse",
 		"message": "Nachricht",
+		"status": {
+			"invalid-input": "Ungültige Eingabe.",
+			"success": "Nachricht erfolgreich gesendet.",
+			"unknown-error": "Konnte Nachricht nicht senden."
+		},
 		"subject": "Betreff",
 		"submit": "Absenden"
+	},
+	"ContactPage": {
+		"meta": {
+			"title": "Kontakt"
+		},
+		"title": "Kontakt"
+	},
+	"EventPage": {
+		"date": "Datum",
+		"place": "Ort"
+	},
+	"FootnoteContent": {
+		"back": "Zurück zu Referenz {count}"
+	},
+	"FootnoteSection": {
+		"footnotes": "Fußnoten"
+	},
+	"ImageCarousel": {
+		"next": "Nächste",
+		"previous": "Vorherige",
+		"slide": "{current} von {total}",
+		"start": "Starten",
+		"stop": "Pausieren"
 	},
 	"ImprintPage": {
 		"meta": {
@@ -20,16 +48,18 @@
 		"title": "Impressum"
 	},
 	"IndexPage": {
+		"event": {
+			"date": "Datum",
+			"place": "Ort"
+		},
 		"meta": {
 			"title": "Startseite"
-		},
-		"futureEvents": "Nächste Veranstaltungen",
-		"pastEvents": "Vergangene Veranstaltungen"
+		}
 	},
 	"LocaleSwitcher": {
-		"current-locale": "Aktuelle Sprache: {{locale}}",
+		"current-locale": "Aktuelle Sprache: {locale}",
 		"switch-locale": "Sprache wechseln",
-		"switch-locale-to": "Zu {{locale}} wechseln"
+		"switch-locale-to": "Zu {locale} wechseln"
 	},
 	"Mdx": {
 		"FootnoteBackLabel": "Zurück zur Referenz {reference}",
@@ -44,6 +74,9 @@
 		},
 		"title": "Seite nicht gefunden"
 	},
+	"ReadMoreLink": {
+		"label": "Mehr Info"
+	},
 	"Search": {
 		"close-dialog": "Dialogfenster schließen",
 		"search": "Suchen"
@@ -51,12 +84,11 @@
 	"SkipLink": {
 		"skip-to-main-content": "Zum Hauptinhalt springen"
 	},
-	"SuccessPage": {
-		"message": "Email erfolgreich gesendet!",
-		"meta": {
-			"title": "Kontakt"
-		},
-		"title": "Kontakt"
+	"SteeringCommitteeMemberPage": {
+		"website": "Webseite"
+	},
+	"TableOfContents": {
+		"tableOfContents": "Inhaltsverzeichnis"
 	},
 	"WebsiteFooter": {
 		"links": {

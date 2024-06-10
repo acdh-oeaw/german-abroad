@@ -1,6 +1,13 @@
-import metadata from "~/content/metadata.json";
+import { defaultLocale } from "@/config/i18n.config";
+import { createI18n } from "@/lib/i18n";
 
-export function GET() {
+export async function GET() {
+	const locale = defaultLocale;
+
+	const { t } = await createI18n(locale);
+
+	const metadata = t("metadata");
+
 	const manifest = {
 		name: metadata.title,
 		short_name: metadata.shortTitle,

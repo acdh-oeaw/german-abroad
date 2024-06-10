@@ -33,6 +33,7 @@ COPY --chown=node:node ./node_modules/.astro ./node_modules/.astro
 ARG PUBLIC_APP_BASE_PATH
 ARG PUBLIC_APP_BASE_URL
 ARG PUBLIC_BOTS
+ARG PUBLIC_GOOGLE_SITE_VERIFICATION
 ARG PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
 ARG PUBLIC_KEYSTATIC_GITHUB_REPO_NAME
 ARG PUBLIC_KEYSTATIC_GITHUB_REPO_OWNER
@@ -65,7 +66,7 @@ WORKDIR /app
 USER node
 
 COPY --from=base --chown=node:node /app/node_modules ./node_modules
-COPY --from=build --chown=node:node /app/dist ./dist
+COPY --from=build --chown=node:node /app/dist ./
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
@@ -73,4 +74,4 @@ ENV PORT=3000
 
 EXPOSE 3000
 
-CMD [ "node", "./dist/server/entry.mjs" ]
+CMD [ "node", "./server/entry.mjs" ]

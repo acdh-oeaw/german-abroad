@@ -1,6 +1,6 @@
-# german abroad website
+# website template
 
-project website.
+template repository for project websites.
 
 ## how to run
 
@@ -24,12 +24,23 @@ the default template accepts the following variables:
   [redmine](https://redmine.acdh.oeaw.ac.at) issue tracker.
 - `PUBLIC_APP_BASE_URL` (required): the base url for this application. the default of
   "http://localhost:3000" should be fine for local development.
+- `PUBLIC_APP_BASE_PATH` (optional): set this when deploying to a path other than "/".
 - `PUBLIC_BOTS` (required): whether this website can be indexed by web crawlers like the google bot.
   supported values are "disabled" and "enabled", defaults to "disabled".
 - `PUBLIC_MATOMO_BASE_URL` and `PUBLIC_MATOMO_ID` (optional): set these to support client-side
   analytics with matomo.
 - `PUBLIC_GOOGLE_SITE_VERIFICATION` (optional): set this to verify site ownership for google search
   console.
+- `ENV_VALIDATION` (optional): whether environment variables should be validated. supported values
+  are "disabled", "enabled" and "public" (only validate public variables, which can be useful in a
+  docker build context to avoid having to pass secrets to `docker build`), defaults to "enabled".
+
+the email service can be configured with these environment variables:
+
+- `EMAIL_CONTACT_ADDRESS` (required): email will be sent to this address.
+- `EMAIL_SMTP_SERVER` and `EMAIL_SMTP_PORT` (required): which smtp server to use.
+- `EMAIL_SMTP_USERNAME` and `EMAIL_SMTP_PASSWORD` (optional): not needed on acdh-ch infrastructure,
+  can be useful for testing with e.e. <https://ethereal.email>.
 
 when adding new environment variables, don't forget to add them to `.env.local.example` as well.
 
@@ -39,7 +50,7 @@ install dependencies:
 pnpm install
 ```
 
-run a development server on [http://localhost:3000](http://localhost:3000):
+run a development server on <http://localhost:3000>:
 
 ```bash
 pnpm run dev
@@ -52,7 +63,9 @@ pnpm run dev
 
 ## how to edit content
 
-use the admin ui at [http://localhost:3000/keystatic](http://localhost:3000/keystatic)
+use the admin ui at when developing locally <http://localhost:3000/admin> (this will save changes to
+the filesystem), or at <https://template-website-astro.acdh-ch-dev.oeaw.ac.at/admin> (this will
+commit changes to the github repository).
 
 ## how to deploy
 
@@ -69,7 +82,7 @@ use the admin ui at [http://localhost:3000/keystatic](http://localhost:3000/keys
   [redmine](https://redmine.acdh.oeaw.ac.at) issue tracker, and set the `SERVICE_ID` github variable
   to the issue number. this should match the `PUBLIC_REDMINE_ID` variable in your `.env.local` file.
 - ensure required build args (prefixed with `PUBLIC_`) are referenced in both the
-  [`Dockerfle`](./Dockerfile), as well as the [validation](./.github/workflows/validate.yml) as
+  [`Dockerfile`](./Dockerfile), as well as the [validation](./.github/workflows/validate.yml) and
   [deployment](./.github/workflows/build-deploy.yml) pipelines, and set as github variables.
 - ensure required runtime environment variables are referenced in the
   [validation](./.github/workflows/validate.yml) and

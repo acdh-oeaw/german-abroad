@@ -1,4 +1,6 @@
 ---
+import Link from "@/components/link.astro";
+
 interface Props {
 	href: string;
 }
@@ -6,6 +8,4 @@ interface Props {
 const { href } = Astro.props;
 ---
 
-<a download href={href}>
-	<slot />
-</a>
+<Link download="" href={href}><slot /></Link>

@@ -1,0 +1,71 @@
+---
+import MainContent from "@/components/main-content.astro";
+import PageSection from "@/components/page-section.astro";
+import PageTitle from "@/components/page-title.astro";
+import { locales } from "@/config/i18n.config";
+import PageLayout from "@/layouts/page-layout.astro";
+import { createI18n } from "@/lib/i18n";
+import { processMdx } from "@/lib/content/mdx";
+import { reader } from "@/lib/content/reader";
+import { getCollectionName } from "@/lib/content/get-collection-name";
+import { compareDesc } from "date-fns";
+import { getFullName } from "@/lib/get-full-name";
+import Link from "@/components/link.astro";
+
+export function getStaticPaths() {
+	return Promise.all(
+		locales.map(async (locale) => {
+			const page =
+				await reader().collections[getCollectionName("pages", locale)].readOrThrow(
+					"steering-committee",
+				);
+
+			const members =
+				await reader().collections[getCollectionName("steeringCommittee", locale)].all();
+
+			return { params: { locale }, props: { page, members } };
+		}),
+	);
+}
+
+const { locale } = Astro.params;
+
+const { page, members } = Astro.props;
+
+const { t } = await createI18n(locale);
+
+const documentTitle = page.title;
+const { title } = page;
+const { default: Content } = await processMdx(await page.content(), locale);
+---
+
+<PageLayout locale={locale} title={documentTitle}>
+	<MainContent search="exclude">
+		<PageSection>
+			<PageTitle>{title}</PageTitle>
+			<div class="prose prose-sm">
+				<Content />
+			</div>
+			<div>
+				<ul role="list">
+					{
+						members.map((member) => {
+							const href = `/steering-committee/${member.slug}/`;
+							const fullName = getFullName(member.entry);
+
+							return (
+								<li>
+									<article>
+										<h2>
+											<Link href={href}>{fullName}</Link>
+										</h2>
+									</article>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+		</PageSection>
+	</MainContent>
+</PageLayout>

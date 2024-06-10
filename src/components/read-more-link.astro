@@ -1,0 +1,28 @@
+---
+import Link from "@/components/link.astro";
+import { Icon } from "astro-icon/components";
+import { createI18n } from "@/lib/i18n";
+import { defaultLocale, type Locale } from "@/config/i18n.config";
+
+interface Props {
+	href: string;
+}
+
+const { href } = Astro.props;
+
+const locale = (Astro.currentLocale as Locale | undefined) ?? defaultLocale;
+
+const { t } = await createI18n(locale);
+---
+
+<Link
+	class="group inline-flex items-center gap-x-2 rounded-md bg-neutral-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-700"
+	href={href}
+>
+	<Icon
+		aria-hidden="true"
+		class="size-5 shrink-0 -translate-x-2 transition group-hover:translate-x-0"
+		name="lucide:arrow-right"
+	/>
+	{t("ReadMoreLink.label")}
+</Link>

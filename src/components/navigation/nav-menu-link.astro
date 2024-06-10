@@ -1,5 +1,5 @@
 ---
-import NavLink from "@/components/navigation/nav-link.astro";
+import Link from "@/components/link.astro";
 
 interface Props {
 	class?: string;
@@ -9,13 +9,13 @@ interface Props {
 const { class: className, ...rest } = Astro.props;
 ---
 
-<NavLink
+<Link
 	{...rest}
 	class:list={[
-		"rounded inline-flex px-4 py-2 font-medium transition hover:text-neutral-950 dark:hover:text-neutral-0",
+		"rounded inline-flex px-4 py-2 transition hover:text-neutral-950 dark:hover:text-neutral-0",
 		className,
 	]}
 	data-nav-link
 >
 	<slot />
-</NavLink>
+</Link>

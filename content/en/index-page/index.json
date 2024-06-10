@@ -1,0 +1,38 @@
+{
+	"hero": {
+		"title": "German Abroad",
+		"subtitle": "Extraterritorial varieties of German worldwide.",
+		"links": [
+			{
+				"discriminant": "page",
+				"value": {
+					"label": "About the project",
+					"reference": "about"
+				}
+			}
+		]
+	},
+	"main": {
+		"sections": [
+			{
+				"discriminant": "cardsSection",
+				"value": {
+					"title": "About the project",
+					"variant": "fluid",
+					"cards": [
+						{
+							"discriminant": "page",
+							"value": {
+								"title": "About the project",
+								"reference": "about",
+								"link": {
+									"label": "Read more"
+								}
+							}
+						}
+					]
+				}
+			}
+		]
+	}
+}

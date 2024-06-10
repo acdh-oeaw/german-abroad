@@ -11,7 +11,7 @@ const { t } = await createI18n(Astro.currentLocale as Locale | undefined);
 
 <site-search transition:persist>
 	<button
-		class="inline-flex items-center gap-x-2 px-4 py-2 font-medium transition hover:text-neutral-950 dark:hover:text-neutral-0"
+		class="inline-flex items-center gap-x-2 px-4 py-2 text-neutral-700 hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-0"
 		data-search-open
 		disabled
 	>
@@ -21,7 +21,7 @@ const { t } = await createI18n(Astro.currentLocale as Locale | undefined);
 
 	<dialog
 		aria-label={t("Search.search")}
-		class="fixed mx-auto min-h-full w-full max-w-screen-md rounded-lg border bg-neutral-50 backdrop:bg-neutral-600/50 backdrop:backdrop-blur-sm open:grid sm:mt-[5rem] sm:max-h-[calc(100%-10rem)] sm:min-h-[16rem] sm:shadow-lg"
+		class="fixed mx-auto min-h-full w-full max-w-screen-md border bg-white backdrop:bg-black/20 backdrop:backdrop-blur-sm open:grid sm:mt-[5rem] sm:max-h-[calc(100%-10rem)] sm:min-h-[16rem] sm:rounded-lg sm:shadow-lg dark:bg-neutral-900"
 	>
 		<div class="grid size-full gap-y-4 px-8 py-6" data-dialog-content>
 			<div class="relative mt-8">
@@ -39,17 +39,17 @@ const { t } = await createI18n(Astro.currentLocale as Locale | undefined);
 	import { assert } from "@acdh-oeaw/lib";
 
 	class SiteSearch extends HTMLElement {
-		constructor() {
-			super();
-
+		connectedCallback() {
 			const openButton = this.querySelector<HTMLButtonElement>("button[data-search-open]");
 			const closeButton = this.querySelector<HTMLButtonElement>("button[data-search-close]");
 			const dialog = this.querySelector<HTMLDialogElement>("dialog");
 			const dialogContent = this.querySelector<HTMLDivElement>("div[data-dialog-content]");
+			const dialogSearchResults = this.querySelector<HTMLDivElement>("div[data-search-results]");
 			assert(openButton);
 			assert(closeButton);
 			assert(dialog);
 			assert(dialogContent);
+			assert(dialogSearchResults);
 
 			function closeDialog() {
 				dialog?.close();
@@ -89,7 +89,7 @@ const { t } = await createI18n(Astro.currentLocale as Locale | undefined);
 					// @ts-expect-error — Missing types for @pagefind/default-ui package.
 					const { PagefindUI } = await import("@pagefind/default-ui");
 					new PagefindUI({
-						element: "[data-search-results]",
+						element: dialogSearchResults,
 						baseUrl: import.meta.env.BASE_URL,
 						bundlePath: import.meta.env.BASE_URL.replace(/\/$/, "") + "/pagefind/",
 						showImages: false,
@@ -120,7 +120,7 @@ const { t } = await createI18n(Astro.currentLocale as Locale | undefined);
 
 	/* stylelint-disable-next-line selector-class-pattern */
 	.pagefind-ui .pagefind-ui__result-inner {
-		@apply bg-neutral-0 py-3 px-4 rounded-md;
+		@apply bg-white py-3 px-4 rounded-md;
 	}
 
 	/* stylelint-disable-next-line selector-class-pattern */

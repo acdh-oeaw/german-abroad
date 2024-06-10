@@ -5,10 +5,12 @@ import sitemap from "@astrojs/sitemap";
 import keystatic from "@keystatic/astro";
 import { defineConfig } from "astro/config";
 import icon from "astro-icon";
+import type { Writable } from "type-fest";
 import { loadEnv } from "vite";
 
-// import { defaultLocale } from "./src/config/i18n.config";
+import { defaultLocale, locales } from "./src/config/i18n.config";
 // import { createConfig as createMdxConfig } from "./src/config/mdx.config";
+import { ensureTrailingSlash } from "./src/lib/ensure-trailing-slash";
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
@@ -23,18 +25,28 @@ export default defineConfig({
 	}),
 	base: env.PUBLIC_APP_BASE_PATH,
 	experimental: {
+		// actions: true,
 		contentCollectionCache: true,
-		security: {
-			csrfProtection: {
-				origin: true,
-			},
-		},
+		rewriting: true,
+	},
+	i18n: {
+		defaultLocale,
+		locales: locales as Writable<typeof locales>,
+		routing: "manual",
 	},
 	integrations: [
 		icon({
 			/** @see https://www.astroicon.dev/reference/configuration/#include */
 			include: {
-				lucide: ["chevron-down", "menu", "message-circle", "search", "x"],
+				lucide: [
+					"arrow-right",
+					"chevron-down",
+					"menu",
+					"message-circle",
+					"search",
+					"square-arrow-left",
+					"x",
+				],
 			},
 			svgoOptions: {
 				multipass: true,
@@ -53,8 +65,18 @@ export default defineConfig({
 		keystatic(),
 		mdx(),
 		react(),
-		sitemap(),
+		sitemap({
+			i18n: {
+				defaultLocale,
+				locales: Object.fromEntries(
+					locales.map((locale) => {
+						return [locale, locale];
+					}),
+				),
+			},
+		}),
 	],
+	/** Use `@/lib/content/mdx.ts` instead of astro's built-in markdown processor. */
 	// // @ts-expect-error Astro types are incomplete.
 	// markdown: {
 	// 	...(await createMdxConfig(defaultLocale)),
@@ -69,11 +91,16 @@ export default defineConfig({
 	},
 	redirects: {
 		"/admin": {
-			destination: "/keystatic",
+			destination: env.PUBLIC_APP_BASE_PATH
+				? ensureTrailingSlash(env.PUBLIC_APP_BASE_PATH) + "/keystatic"
+				: "/keystatic",
 			status: 307,
 		},
 	},
 	scopedStyleStrategy: "where",
+	security: {
+		checkOrigin: true,
+	},
 	server: {
 		port: 3000,
 	},

@@ -15,7 +15,10 @@ const { baseUrl, id } = Astro.props;
 />
 
 <script>
+	import type { Locale } from "@/config/i18n.config";
 	import { initAnalytics } from "@/lib/analytics";
 
-	initAnalytics();
+	const currentLocale = document.documentElement.getAttribute("lang") as Locale;
+
+	initAnalytics(currentLocale);
 </script>

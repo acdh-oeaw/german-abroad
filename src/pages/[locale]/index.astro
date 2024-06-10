@@ -1,0 +1,143 @@
+---
+import { compareDesc } from "date-fns";
+
+import MainContent from "@/components/main-content.astro";
+import ReadMoreLink from "@/components/read-more-link.astro";
+import { locales } from "@/config/i18n.config";
+import PageLayout from "@/layouts/page-layout.astro";
+import { getCollectionName } from "@/lib/content/get-collection-name";
+import { getSingletonName } from "@/lib/content/get-singleton-name";
+import { reader } from "@/lib/content/reader";
+import { createI18n } from "@/lib/i18n";
+
+export function getStaticPaths() {
+	return Promise.all(
+		locales.map(async (locale) => {
+			const page = await reader().singletons[getSingletonName("indexPage", locale)].readOrThrow();
+
+			const events = await reader().collections[getCollectionName("events", locale)].all();
+			const sortedEvents = events
+				.sort((a, z) => {
+					return compareDesc(a.entry.date, z.entry.date);
+				})
+				.slice(0, 4);
+
+			return { params: { locale }, props: { page, events: sortedEvents } };
+		}),
+	);
+}
+
+const { locale } = Astro.params;
+
+const { page, events } = Astro.props;
+
+const { t } = await createI18n(locale);
+const formatter = { date: new Intl.DateTimeFormat(locale, { dateStyle: "long" }) };
+
+const documentTitle = t("IndexPage.meta.title");
+const { hero, main } = page;
+---
+
+<PageLayout locale={locale} title={documentTitle}>
+	<MainContent>
+		<section class="bg-gradient-to-r from-hero-from to-hero-to">
+			<div class="mx-auto grid w-full max-w-screen-lg justify-items-start gap-y-2 px-8 py-48">
+				<h1 class="inline-block rounded-md bg-black/60 px-8 py-4 text-6xl font-bold text-white">
+					{hero.title}
+				</h1>
+				<p class="inline-block rounded-md bg-black/60 px-4 py-2 text-3xl font-bold text-white">
+					{hero.subtitle}
+				</p>
+			</div>
+		</section>
+
+		<section class="">
+			<div class="mx-auto grid w-full max-w-screen-lg gap-y-12 px-8 py-24">
+				<h2 class="text-2xl font-bold">Über das Projekt</h2>
+				<div class="prose">
+					<p>
+						„German Abroad – Extraterritoriale Varietäten des Deutschen weltweit“ ist eine
+						Konferenzreihe, die 2014 in Wien ihren Anfang nahm und seitdem Austin (2016), Erfurt
+						(2018) Windhoek (2021) und zuletzt in Kooperation in Eichstätt und München (2023)
+						stattgefunden hat. Die Konferenzen fokussieren system- und soziolinguistische
+						Besonderheiten deutschsprachiger Sprachminderheiten aus den Perspektiven der
+						Variationslinguistik, Sprachkontakt- und Mehrsprachigkeitsforschung, sowie angrenzenden
+						Disziplinen. Im Mittelpunkt stehen Sprachkontaktsituationen und -phänomene sowie die
+						ihnen zugrundeliegenden mehrsprachigen kommunikativen Praktiken, wie sie
+						deutschsprachige Gruppen außerhalb des deutschen Sprachraums prägen. Auch perzeptive
+						Perspektiven wie Spracheinstellungen und Sprachideologie im Hinblick auf
+						Kontaktvarietäten des Deutschen werden behandelt.
+					</p>
+					<p>
+						Parallel zur Konferenzreihe stellt German Abroad auch ein globales Netzwerk an
+						Forschenden dar, die sich mit der gesamten Breite der extraterritorialen Varietäten des
+						Deutschen beschäftigen. Interessierte Forschende sind stets eingeladen, sich mit uns in
+						Verbindung zu setzen, an den Konferenzen teilzunehmen und zur Vernetzung der Forschung
+						in diesem Bereich beizutragen!
+					</p>
+					<p>
+						Auf dieser Seite finden Sie einen Überblick über die vergangenen Konferenzen sowie
+						Informationen zur nächsten Veranstaltung.
+					</p>
+				</div>
+				<div class="mt-4 flex justify-end">
+					<ReadMoreLink href="/about/" />
+				</div>
+			</div>
+		</section>
+
+		<section class="border-t bg-neutral-50">
+			<div class="mx-auto grid w-full max-w-screen-lg gap-y-12 px-8 py-24">
+				<h2 class="text-2xl font-bold">Veranstaltungen</h2>
+				<div>
+					<ul class="grid grid-cols-2 gap-8" role="list">
+						{
+							events.map((event) => {
+								const href = `/events/${String(event.slug)}/`;
+
+								return (
+									<li>
+										<article class="relative rounded-lg bg-white shadow-lg transition hover:scale-105">
+											{/* <img alt="" src={} /> */}
+											<div class="grid gap-y-4 px-6 py-8">
+												<h3 class="text-lg font-medium">
+													<a class="after:absolute after:inset-0" href={href}>
+														{event.entry.title}
+													</a>
+												</h3>
+												{/* <div>{event.entry.summary}</div> */}
+												<dl class="grid gap-y-1">
+													<div>
+														<dt class="text-xs font-semibold uppercase tracking-wide text-neutral-600">
+															{t("IndexPage.event.date")}
+														</dt>
+														<dd>
+															<time datetime={event.entry.date}>
+																{formatter.date.format(new Date(event.entry.date))}
+															</time>
+														</dd>
+													</div>
+													<div>
+														<dt class="text-xs font-semibold uppercase tracking-wide text-neutral-600">
+															{t("IndexPage.event.place")}
+														</dt>
+														<dd>
+															<span>{event.entry.place}</span>
+														</dd>
+													</div>
+												</dl>
+											</div>
+										</article>
+									</li>
+								);
+							})
+						}
+					</ul>
+				</div>
+				<div class="mt-4 flex justify-end">
+					<ReadMoreLink href="/events/" />
+				</div>
+			</div>
+		</section>
+	</MainContent>
+</PageLayout>

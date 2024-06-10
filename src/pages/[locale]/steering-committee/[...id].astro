@@ -1,0 +1,62 @@
+---
+import MainContent from "@/components/main-content.astro";
+import PageSection from "@/components/page-section.astro";
+import PageTitle from "@/components/page-title.astro";
+import { locales } from "@/config/i18n.config";
+import PageLayout from "@/layouts/page-layout.astro";
+import { getCollectionName } from "@/lib/content/get-collection-name";
+import { processMdx } from "@/lib/content/mdx";
+import { reader } from "@/lib/content/reader";
+import { createI18n } from "@/lib/i18n";
+import { getFullName } from "@/lib/get-full-name";
+
+export async function getStaticPaths() {
+	return (
+		await Promise.all(
+			locales.flatMap(async (locale) => {
+				const pages =
+					await reader().collections[getCollectionName("steeringCommittee", locale)].all();
+
+				return pages.map((page) => {
+					return { params: { id: page.slug, locale }, props: { page: page.entry } };
+				});
+			}),
+		)
+	).flat();
+}
+
+const { locale } = Astro.params;
+
+const { page } = Astro.props;
+
+const { t } = await createI18n(locale);
+
+const fullName = getFullName(page);
+const documentTitle = fullName;
+const title = fullName;
+const { image, website } = page;
+const { default: Content } = await processMdx(await page.content(), locale);
+---
+
+<PageLayout locale={locale} title={documentTitle}>
+	<MainContent>
+		<PageSection>
+			<PageTitle>{title}</PageTitle>
+			<dl>
+				{
+					website != null ? (
+						<div>
+							<dt>{t("SteeringCommitteeMemberPage.website")}</dt>
+							<dd>
+								<a href={website}>{website}</a>
+							</dd>
+						</div>
+					) : null
+				}
+			</dl>
+			<div class="prose prose-sm">
+				<Content />
+			</div>
+		</PageSection>
+	</MainContent>
+</PageLayout>

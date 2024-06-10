@@ -1,0 +1,69 @@
+---
+import MainContent from "@/components/main-content.astro";
+import PageSection from "@/components/page-section.astro";
+import PageTitle from "@/components/page-title.astro";
+import { locales } from "@/config/i18n.config";
+import PageLayout from "@/layouts/page-layout.astro";
+import { createI18n } from "@/lib/i18n";
+import { processMdx } from "@/lib/content/mdx";
+import { reader } from "@/lib/content/reader";
+import { getCollectionName } from "@/lib/content/get-collection-name";
+import { compareDesc } from "date-fns";
+import Link from "@/components/link.astro";
+
+export function getStaticPaths() {
+	return Promise.all(
+		locales.map(async (locale) => {
+			const page =
+				await reader().collections[getCollectionName("pages", locale)].readOrThrow("events");
+
+			const events = await reader().collections[getCollectionName("events", locale)].all();
+			const sortedEvents = events.sort((a, z) => {
+				return compareDesc(a.entry.date, z.entry.date);
+			});
+
+			return { params: { locale }, props: { page, events: sortedEvents } };
+		}),
+	);
+}
+
+const { locale } = Astro.params;
+
+const { page, events } = Astro.props;
+
+const { t } = await createI18n(locale);
+
+const documentTitle = page.title;
+const { title } = page;
+const { default: Content } = await processMdx(await page.content(), locale);
+---
+
+<PageLayout locale={locale} title={documentTitle}>
+	<MainContent search="exclude">
+		<PageSection>
+			<PageTitle>{title}</PageTitle>
+			<div class="prose prose-sm">
+				<Content />
+			</div>
+			<div>
+				<ul role="list">
+					{
+						events.map((event) => {
+							const href = `/events/${event.slug}/`;
+
+							return (
+								<li>
+									<article>
+										<h2>
+											<Link href={href}>{event.entry.title}</Link>
+										</h2>
+									</article>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+		</PageSection>
+	</MainContent>
+</PageLayout>

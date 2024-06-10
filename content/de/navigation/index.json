@@ -1,0 +1,32 @@
+{
+	"links": [
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Über das Projekt",
+				"reference": "about"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Veranstaltungen",
+				"reference": "events"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Steering committee",
+				"reference": "steering-committee"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Weiterführendes",
+				"reference": "information"
+			}
+		}
+	]
+}
