@@ -1,0 +1,13 @@
+{
+  "title": "German Abroad",
+  "description": "Extraterritoriale Varietäten des Deutschen weltweit",
+  "twitter": {
+    "creator": "@acdh_oeaw",
+    "site": "@acdh_oeaw"
+  },
+  "manifest": {
+    "name": "German Abroad",
+    "short-name": "German Abroad",
+    "description": "Extraterritoriale Varietäten des Deutschen weltweit"
+  }
+}

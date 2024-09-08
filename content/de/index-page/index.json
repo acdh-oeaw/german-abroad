@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "title": "German Abroad",
+    "subtitle": "Extraterritoriale Varietäten des Deutschen weltweit"
+  },
+  "sections": [
+    {
+      "discriminant": "text",
+      "value": {
+        "title": "Über uns",
+        "lead": "\"German Abroad – Extraterritoriale Varietäten des Deutschen weltweit\" ist eine Konferenzreihe, die 2014 in Wien ihren Anfang nahm und seitdem Austin (2016), Erfurt (2018) Windhoek (2021) und zuletzt in Kooperation in Eichstätt und München (2023) stattgefunden hat. "
+      }
+    },
+    {
+      "discriminant": "data",
+      "value": {
+        "title": "Konferenzen",
+        "lead": "Ein Überblick über die vergangenen Konferenzen.",
+        "collections": [
+          "conferences"
+        ],
+        "count": 6
+      }
+    }
+  ]
+}

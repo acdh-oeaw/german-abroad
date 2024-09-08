@@ -1,0 +1,74 @@
+---
+import NavLink from "@/components/nav-link.astro";
+import { type Locale, locales } from "@/config/i18n.config";
+import { createSingletonResource } from "@/lib/content/create-resource";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const navigation = await createSingletonResource("navigation", locale).read();
+---
+
+<header class="border-b">
+	<nav class="container flex justify-between gap-x-lg py-lg">
+		<ul class="flex flex-wrap gap-x-lg" role="list">
+			{
+				navigation.data.links.map((link) => {
+					switch (link.discriminant) {
+						case "link": {
+							const { href, label } = link.value;
+
+							return (
+								<li>
+									<NavLink href={href}>{label}</NavLink>
+								</li>
+							);
+						}
+
+						case "menu": {
+							break;
+						}
+
+						case "page": {
+							const { id, label } = link.value;
+
+							return (
+								<li>
+									<NavLink href={`/${id}`}>{label}</NavLink>
+								</li>
+							);
+						}
+
+						case "separator": {
+							return (
+								<li role="presentation">
+									<div role="separator" />
+								</li>
+							);
+						}
+					}
+				})
+			}
+		</ul>
+
+		<div class="flex gap-x-xs">
+			{
+				locales.map((locale, index) => {
+					const href = Astro.currentLocale ? Astro.url.pathname.slice(3) : Astro.url.pathname;
+
+					return (
+						<>
+							{index !== 0 ? <span>|</span> : null}
+							<NavLink href={href} locale={locale}>
+								{locale.toUpperCase()}
+							</NavLink>
+						</>
+					);
+				})
+			}
+		</div>
+	</nav>
+</header>

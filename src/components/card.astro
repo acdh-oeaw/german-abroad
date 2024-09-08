@@ -1,0 +1,29 @@
+---
+import LocaleLink from "@/components/locale-link.astro";
+
+export interface Props {
+	href: string;
+	image?: string | null;
+	title: string;
+}
+
+const { href, image, title } = Astro.props;
+---
+
+<article class="relative overflow-hidden rounded-sm shadow-raised transition hover:shadow-overlay">
+	<div class="bg-mesh relative aspect-video border-b">
+		{
+			image ? (
+				<img alt="" class="absolute inset-0 size-full object-cover" loading="lazy" src={image} />
+			) : null
+		}
+	</div>
+	<div class="grid content-start gap-y-xs p-lg">
+		<h3 class="text-lg font-strong text-text-strong">
+			<LocaleLink class="after:absolute after:inset-0" href={href}>
+				{title}
+			</LocaleLink>
+		</h3>
+		<slot />
+	</div>
+</article>

@@ -1,0 +1,39 @@
+{
+  "links": [
+    {
+      "discriminant": "link",
+      "value": {
+        "label": "Startseite",
+        "href": "/"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": {
+        "label": "Konferenzen",
+        "id": "conferences"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": {
+        "label": "Veranstaltungen",
+        "id": "events"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": {
+        "label": "Steering committee",
+        "id": "steering-committee"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": {
+        "label": "Links",
+        "id": "links"
+      }
+    }
+  ]
+}

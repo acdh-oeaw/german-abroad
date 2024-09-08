@@ -1,0 +1,15 @@
+{
+	"common": {
+		"coming-soon": "Coming soon...",
+		"date": "Date",
+		"hosts": "Hosts",
+		"imprint": "Imprint",
+		"location": "Location",
+		"orcid": "ORCID",
+		"website": "Website"
+	},
+	"mdx": {
+		"footnote-back-label": "Back to reference {reference}",
+		"footnotes": "Footnotes"
+	}
+}

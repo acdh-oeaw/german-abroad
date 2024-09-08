@@ -1,0 +1,11 @@
+---
+import LocaleLink, { type Props as LocaleLinkProps } from "@/components/locale-link.astro";
+
+interface Props extends Omit<LocaleLinkProps, "class"> {}
+
+const props = Astro.props;
+---
+
+<LocaleLink {...props} class="transition hover:text-text-brand aria-[current]:font-strong">
+	<slot />
+</LocaleLink>

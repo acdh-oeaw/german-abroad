@@ -1,0 +1,134 @@
+---
+import type { GetStaticPathsResult } from "astro";
+import { Icon } from "astro-icon/components";
+
+import Section from "@/components/section.astro";
+import { locales } from "@/config/i18n.config";
+import Layout from "@/layouts/page.layout.astro";
+import { createCollectionResource } from "@/lib/content/create-resource";
+import { createI18n } from "@/lib/i18n/create-i18n";
+
+export async function getStaticPaths() {
+	return locales.map((locale) => {
+		return { params: { locale } };
+	}) satisfies GetStaticPathsResult;
+}
+
+const { locale } = Astro.params;
+
+const { t } = await createI18n(locale);
+
+const page = await createCollectionResource("pages", locale).read("steering-committee");
+const people = await createCollectionResource("steeringCommittee", locale).all();
+people.sort((a, z) => {
+	return a.data.name.localeCompare(z.data.name);
+});
+
+const { content, image, title } = page.data;
+
+const { default: Content } = await page.compile(content);
+---
+
+<Layout locale={locale} title={title}>
+	<main class="mb-2xl">
+		<section class="relative">
+			{
+				image ? (
+					<img alt="" class="absolute inset-0 size-full object-cover" loading="eager" src={image} />
+				) : null
+			}
+			<div class="container border-b py-2xl">
+				<div class="grid gap-y-sm">
+					<h1 class="text-display lowercase">{title}.</h1>
+					{
+						content ? (
+							<div>
+								<Content />
+							</div>
+						) : null
+					}
+				</div>
+			</div>
+		</section>
+
+		<Section>
+			<div class="container py-xl">
+				{
+					people.length > 0 ? (
+						<ul class="grid content-start gap-y-xl" role="list">
+							{people.map(async (person) => {
+								const { data } = person;
+
+								const { affiliation, content, name, image, orcid, website } = data;
+
+								const { default: Content } = await person.compile(content);
+
+								return (
+									<li class="border-b pb-xl">
+										<article class="relative grid content-start gap-y-xs">
+											<div class="relative my-xs aspect-square size-48 overflow-hidden rounded-full border">
+												<img
+													alt=""
+													class="absolute inset-0 size-full object-cover"
+													loading="lazy"
+													src={image}
+												/>
+											</div>
+											<h3 class="text-2xl font-strong text-text-strong">{name}</h3>
+											<div class="text-lg text-text-weak">{affiliation}</div>
+											<div class="prose my-xs">
+												<Content />
+											</div>
+											<dl class="flex flex-wrap gap-x-xl">
+												{orcid ? (
+													<div>
+														<dt class="sr-only">{t("common.orcid")}</dt>
+														<dd>
+															<a
+																class="group inline-flex items-center gap-x-2 font-medium transition hover:text-text-brand"
+																href={`https://orcid.org/${orcid}`}
+															>
+																<Icon
+																	aria-hidden="true"
+																	class="mt-px size-4 shrink-0 text-text-weak transition group-hover:text-stroke-brand-strong"
+																	name="simple-icons:orcid"
+																/>
+																{t("common.orcid")}
+															</a>
+														</dd>
+													</div>
+												) : null}
+												{website ? (
+													<div>
+														<dt class="sr-only">{t("common.website")}</dt>
+														<dd>
+															<a
+																class="group inline-flex items-center gap-x-2 font-medium transition hover:text-text-brand"
+																href={website}
+															>
+																<Icon
+																	aria-hidden="true"
+																	class="mt-px size-4 shrink-0 text-text-weak transition group-hover:text-stroke-brand-strong"
+																	name="lucide:square-arrow-out-up-right"
+																/>
+																{website}
+															</a>
+														</dd>
+													</div>
+												) : null}
+											</dl>
+										</article>
+									</li>
+								);
+							})}
+						</ul>
+					) : (
+						<p class="flex justify-center py-xl text-center text-sm text-text-weak">
+							{t("common.coming-soon")}
+						</p>
+					)
+				}
+			</div>
+		</Section>
+	</main>
+</Layout>

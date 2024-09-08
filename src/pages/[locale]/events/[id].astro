@@ -1,0 +1,79 @@
+---
+import type { GetStaticPathsResult } from "astro";
+
+import Section from "@/components/section.astro";
+import { locales } from "@/config/i18n.config";
+import Layout from "@/layouts/page.layout.astro";
+import { createCollectionResource } from "@/lib/content/create-resource";
+import { getFormatter } from "@/lib/formatter";
+import { createI18n } from "@/lib/i18n/create-i18n";
+
+export const getStaticPaths = async function getStaticPaths() {
+	return (
+		await Promise.all(
+			locales.map(async (locale) => {
+				const ids = await createCollectionResource("events", locale).list();
+
+				return ids.map((id) => {
+					return { params: { id, locale } };
+				});
+			}),
+		)
+	).flat() satisfies GetStaticPathsResult;
+};
+
+const { id, locale } = Astro.params;
+
+const { t } = await createI18n(locale);
+
+const event = await createCollectionResource("events", locale).read(id);
+
+const { content, date, image, location, title } = event.data;
+
+const { default: Content } = await event.compile(content);
+
+const formatter = getFormatter(locale);
+---
+
+<Layout locale={locale} title={title}>
+	<main class="mb-2xl">
+		<section class="relative">
+			{
+				image ? (
+					<img alt="" class="absolute inset-0 size-full object-cover" loading="eager" src={image} />
+				) : null
+			}
+			<div class="container border-b py-2xl">
+				<div class="grid gap-y-sm">
+					<h1 class="text-display lowercase">{title}.</h1>
+					<dl class="ml-12 flex flex-wrap gap-x-xl gap-y-sm">
+						<div class="leading-snug">
+							<dt class="text-uppercase uppercase">{t("common.date")}</dt>
+							<dd>
+								<time datetime={date}>{formatter.date.format(new Date(date))}</time>
+							</dd>
+						</div>
+						<div class="leading-snug">
+							<dt class="text-uppercase uppercase">{t("common.location")}</dt>
+							<dd>{location}</dd>
+						</div>
+					</dl>
+				</div>
+			</div>
+		</section>
+
+		<Section>
+			<div class="container prose py-xl">
+				{
+					content ? (
+						<Content />
+					) : (
+						<p class="flex justify-center py-xl text-center text-sm text-text-weak">
+							{t("common.coming-soon")}
+						</p>
+					)
+				}
+			</div>
+		</Section>
+	</main>
+</Layout>
