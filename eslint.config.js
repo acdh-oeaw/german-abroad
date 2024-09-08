@@ -26,6 +26,14 @@ solid.forEach((config) => {
 });
 
 /** @type {Config} */
-const config = [gitignore(), ...base, ...astro, ...react, ...solid, ...tailwindcss, ...playwright];
+const config = [
+	gitignore({ strict: false }),
+	...base,
+	...astro,
+	...react,
+	...solid,
+	...tailwindcss,
+	...playwright,
+];
 
 export default config;
