@@ -14,7 +14,7 @@ const navigation = await createSingletonResource("navigation", locale).read();
 
 <header class="border-b">
 	<nav class="container flex justify-between gap-x-lg py-lg">
-		<ul class="flex flex-wrap gap-x-lg" role="list">
+		<ul class="flex flex-wrap gap-x-lg gap-y-xs" role="list">
 			{
 				navigation.data.links.map((link) => {
 					switch (link.discriminant) {
