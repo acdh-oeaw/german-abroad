@@ -36,17 +36,17 @@ importers:
         specifier: ^5.0.21
         version: 5.0.21
       '@iconify-json/lucide':
+        specifier: ^1.2.3
+        version: 1.2.3
+      '@iconify-json/simple-icons':
         specifier: ^1.2.2
         version: 1.2.2
-      '@iconify-json/simple-icons':
-        specifier: ^1.2.1
-        version: 1.2.1
       '@keystatic/astro':
         specifier: ^5.0.0
-        version: 5.0.0(@keystatic/core@0.5.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.15.4(@types/node@20.16.5)(rollup@4.21.2)(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 5.0.0(@keystatic/core@0.5.34(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.15.4(@types/node@20.16.5)(rollup@4.21.2)(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@keystatic/core':
-        specifier: ^0.5.33
-        version: 0.5.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.5.34
+        version: 0.5.34(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mdx-js/mdx':
         specifier: ^3.0.1
         version: 3.0.1
@@ -867,11 +867,11 @@ packages:
     resolution: {integrity: sha512-d2CGZR2o7fS6sWB7DG/3a95bGKQyHMACZ5aW8qGkkqQpUoZV6C0X7Pc7l4ZNMZkfNBf4VWNe9E1jRsf0G146Ew==}
     engines: {node: '>=18.18'}
 
-  '@iconify-json/lucide@1.2.2':
-    resolution: {integrity: sha512-pXZ2GvRYW3G3JCnkM6grBhzok5UM9DaCKzUcyHJnBZb+ECxq77VNWJiXdjxrui0LpkwKtnm7hLkmRMVoAn8qNw==}
+  '@iconify-json/lucide@1.2.3':
+    resolution: {integrity: sha512-NZ6gOFbLVHmsb2zVNoAANKUp+wFIbHP47JNNPMq3tsLAtY8anm2g4S980ZzyrS4M47RHkHXtpiiv+P2Mq3MEDA==}
 
-  '@iconify-json/simple-icons@1.2.1':
-    resolution: {integrity: sha512-eBXREU+jazfOBTl944Uq/ZpOJnbx1/IBw1MpLw0VmmNk0HSvmnvhdcz+3obja7uAp25yNtVcKo3I04ppnuv3NQ==}
+  '@iconify-json/simple-icons@1.2.2':
+    resolution: {integrity: sha512-VMgCoMnpvcCJ5b3rTOGPzW5j6959nIdRCk+8FGzK/vAaDd6f9sx65OcKOqP3C75llpybH/iQhk5yrJ/TOdQKeg==}
 
   '@iconify/tools@4.0.6':
     resolution: {integrity: sha512-riEQggXVuZNXjRdo+aKT0rkzn2XHslIqat8mdW/oVu5mLmP/95Hi+iaq4keT7WwMD97jsYPXMQ6QMCw0EWpRNw==}
@@ -1042,8 +1042,8 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  '@keystatic/core@0.5.33':
-    resolution: {integrity: sha512-O6D3PRulSj1PXgFOotmF+j7l+AlPYusVF7E+KpK+oOYrJx01k85pVXQfttW8dd4fn5pNBnnNKBvC93avpHoZAA==}
+  '@keystatic/core@0.5.34':
+    resolution: {integrity: sha512-h57C+J+rBBX4JnO5VVzeZMJENLeYu1NirJHXvnhWbsnFP6/kaiEZ9ShrxiBiXMzsaoL9i682mes0iR9PWqrOrQ==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -2187,8 +2187,8 @@ packages:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
     engines: {node: '>=14.16'}
 
-  caniuse-lite@1.0.30001658:
-    resolution: {integrity: sha512-N2YVqWbJELVdrnsW5p+apoQyYt51aBMSsBZki1XZEfeBCexcM/sf4xiAHcXQBkuOwJBXtWF7aW1sYX6tKebPHw==}
+  caniuse-lite@1.0.30001659:
+    resolution: {integrity: sha512-Qxxyfv3RdHAfJcXelgf0hU4DFUVXBGTjqrBUZLUh8AtlGnsDo+CnncYtTd95+ZKfnANUOzxyIQCuU/UeBZBYoA==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -3322,8 +3322,8 @@ packages:
     resolution: {integrity: sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==}
     engines: {node: '>= 0.4'}
 
-  is-bun-module@1.1.0:
-    resolution: {integrity: sha512-4mTAVPlrXpaN3jtF0lsnPCMGnq4+qZjVIKq0HCpfcqf8OC1SM5oATCIAPM5V5FN05qp2NNnFndphmdZS9CV3hA==}
+  is-bun-module@1.2.1:
+    resolution: {integrity: sha512-AmidtEM6D6NmUiLOvvU7+IePxjEjOzra2h0pSrsfSAcXwl/83zLLXDByafUJy9k/rKK0pvXMLdwKwGHlX2Ke6Q==}
 
   is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
@@ -4710,8 +4710,8 @@ packages:
     peerDependencies:
       solid-js: ^1.3
 
-  source-map-js@1.2.0:
-    resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
   source-map@0.5.7:
@@ -6203,11 +6203,11 @@ snapshots:
 
   '@humanwhocodes/retry@0.3.0': {}
 
-  '@iconify-json/lucide@1.2.2':
+  '@iconify-json/lucide@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.1':
+  '@iconify-json/simple-icons@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -6455,10 +6455,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@keystatic/astro@5.0.0(@keystatic/core@0.5.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.15.4(@types/node@20.16.5)(rollup@4.21.2)(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@keystatic/astro@5.0.0(@keystatic/core@0.5.34(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.15.4(@types/node@20.16.5)(rollup@4.21.2)(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.6
-      '@keystatic/core': 0.5.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@keystatic/core': 0.5.34(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react': 18.3.5
       astro: 4.15.4(@types/node@20.16.5)(rollup@4.21.2)(typescript@5.5.4)
       cookie: 0.5.0
@@ -6466,7 +6466,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       set-cookie-parser: 2.7.0
 
-  '@keystatic/core@0.5.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@keystatic/core@0.5.34(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.6
       '@braintree/sanitize-url': 6.0.4
@@ -8261,7 +8261,7 @@ snapshots:
 
   browserslist@4.23.3:
     dependencies:
-      caniuse-lite: 1.0.30001658
+      caniuse-lite: 1.0.30001659
       electron-to-chromium: 1.5.18
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
@@ -8282,7 +8282,7 @@ snapshots:
 
   camelcase@7.0.1: {}
 
-  caniuse-lite@1.0.30001658: {}
+  caniuse-lite@1.0.30001659: {}
 
   ccount@2.0.1: {}
 
@@ -8465,12 +8465,12 @@ snapshots:
   css-tree@2.2.1:
     dependencies:
       mdn-data: 2.0.28
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   css-tree@2.3.1:
     dependencies:
       mdn-data: 2.0.30
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   css-what@6.1.0: {}
 
@@ -8846,7 +8846,7 @@ snapshots:
       eslint-module-utils: 2.11.0(@typescript-eslint/parser@8.4.0(eslint@9.10.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.4.0(eslint@9.10.0(jiti@1.21.6))(typescript@5.5.4))(eslint-plugin-import-x@4.2.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.5.4))(eslint-plugin-import-x@4.2.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.5.4))(eslint@9.10.0(jiti@1.21.6)))(eslint@9.10.0(jiti@1.21.6))
       fast-glob: 3.3.2
       get-tsconfig: 4.8.0
-      is-bun-module: 1.1.0
+      is-bun-module: 1.2.1
       is-glob: 4.0.3
     optionalDependencies:
       eslint-plugin-import: eslint-plugin-import-x@4.2.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.5.4)
@@ -9663,7 +9663,7 @@ snapshots:
       call-bind: 1.0.7
       has-tostringtag: 1.0.2
 
-  is-bun-module@1.1.0:
+  is-bun-module@1.2.1:
     dependencies:
       semver: 7.6.3
 
@@ -9998,7 +9998,7 @@ snapshots:
     dependencies:
       '@babel/parser': 7.25.6
       '@babel/types': 7.25.6
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   make-dir@3.1.0:
     dependencies:
@@ -10867,7 +10867,7 @@ snapshots:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.1.0
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   preferred-pm@4.0.0:
     dependencies:
@@ -11433,7 +11433,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  source-map-js@1.2.0: {}
+  source-map-js@1.2.1: {}
 
   source-map@0.5.7: {}
 
