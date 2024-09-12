@@ -1,16 +1,12 @@
-import { collection, fields } from "@keystatic/core";
-
 import {
 	createAssetOptions,
 	createCollection,
-	createCollectionPaths,
 	createContentFieldOptions,
 	createLabel,
-} from "@/lib/keystatic/lib";
+} from "@acdh-oeaw/keystatic-lib";
+import { collection, fields } from "@keystatic/core";
 
-export const conferences = createCollection((locale) => {
-	const paths = createCollectionPaths("/conferences/", locale);
-
+export const conferences = createCollection("/conferences/", (paths, locale) => {
 	return collection({
 		label: createLabel("Conferences", locale),
 		path: paths.contentPath,
@@ -18,7 +14,6 @@ export const conferences = createCollection((locale) => {
 		format: { contentField: "content" },
 		entryLayout: "content",
 		columns: ["title"],
-		// previewUrl: createPreviewUrl("/conferences/{slug}"),
 		schema: {
 			title: fields.slug({
 				name: {
@@ -73,9 +68,7 @@ export const conferences = createCollection((locale) => {
 	});
 });
 
-export const events = createCollection((locale) => {
-	const paths = createCollectionPaths("/events/", locale);
-
+export const events = createCollection("/events/", (paths, locale) => {
 	return collection({
 		label: createLabel("Events", locale),
 		path: paths.contentPath,
@@ -83,7 +76,6 @@ export const events = createCollection((locale) => {
 		format: { contentField: "content" },
 		entryLayout: "content",
 		columns: ["title"],
-		// previewUrl: createPreviewUrl("/events/{slug}"),
 		schema: {
 			title: fields.slug({
 				name: {
@@ -118,9 +110,7 @@ export const events = createCollection((locale) => {
 	});
 });
 
-export const pages = createCollection((locale) => {
-	const paths = createCollectionPaths("/pages/", locale);
-
+export const pages = createCollection("/pages/", (paths, locale) => {
 	return collection({
 		label: createLabel("Pages", locale),
 		path: paths.contentPath,
@@ -128,7 +118,6 @@ export const pages = createCollection((locale) => {
 		format: { contentField: "content" },
 		entryLayout: "content",
 		columns: ["title"],
-		// previewUrl: createPreviewUrl("/{slug}"),
 		schema: {
 			title: fields.slug({
 				name: {
@@ -155,9 +144,7 @@ export const pages = createCollection((locale) => {
 	});
 });
 
-export const links = createCollection((locale) => {
-	const paths = createCollectionPaths("/links/", locale);
-
+export const links = createCollection("/links/", (paths, locale) => {
 	return collection({
 		label: createLabel("Links", locale),
 		path: paths.contentPath,
@@ -165,7 +152,6 @@ export const links = createCollection((locale) => {
 		format: { contentField: "content" },
 		entryLayout: "content",
 		columns: ["name"],
-		// previewUrl: createPreviewUrl("/links/{slug}"),
 		schema: {
 			name: fields.slug({
 				name: {
@@ -186,9 +172,7 @@ export const links = createCollection((locale) => {
 	});
 });
 
-export const steeringCommittee = createCollection((locale) => {
-	const paths = createCollectionPaths("/steering-committee/", locale);
-
+export const steeringCommittee = createCollection("/steering-committee/", (paths, locale) => {
 	return collection({
 		label: createLabel("Steering committee", locale),
 		path: paths.contentPath,
@@ -196,7 +180,6 @@ export const steeringCommittee = createCollection((locale) => {
 		format: { contentField: "content" },
 		entryLayout: "content",
 		columns: ["name"],
-		// previewUrl: createPreviewUrl("/steering-committee/{slug}"),
 		schema: {
 			name: fields.slug({
 				name: {

@@ -7,7 +7,7 @@
 		"node": "22.x",
 		"pnpm": "9.x"
 	},
-	"packageManager": "pnpm@9.9.0",
+	"packageManager": "pnpm@9.10.0",
 	"scripts": {
 		"build": "astro build",
 		"dev": "astro dev",
@@ -34,6 +34,7 @@
 		"validate": "run-p format:check lint:check types:check test test:e2e"
 	},
 	"dependencies": {
+		"@acdh-oeaw/keystatic-lib": "^0.1.1",
 		"@acdh-oeaw/lib": "^0.1.12",
 		"@acdh-oeaw/validate-env": "^0.0.3",
 		"@astrojs/mdx": "^3.1.5",
@@ -48,8 +49,7 @@
 		"@keystatic/astro": "^5.0.0",
 		"@keystatic/core": "^0.5.34",
 		"@mdx-js/mdx": "^3.0.1",
-		"@shikijs/rehype": "^1.16.2",
-		"@sindresorhus/slugify": "^2.2.1",
+		"@shikijs/rehype": "^1.17.0",
 		"astro": "^4.15.4",
 		"astro-icon": "^1.1.1",
 		"clsx": "^2.1.1",
@@ -67,11 +67,11 @@
 		"remark-mdx-frontmatter": "^5.0.0",
 		"remark-smartypants": "^3.0.2",
 		"sharp": "^0.33.5",
-		"shiki": "^1.16.2",
+		"shiki": "^1.17.0",
 		"solid-js": "^1.8.22",
 		"unist-util-visit": "^5.0.0",
 		"valibot": "^0.41.0",
-		"vite": "^5.4.3"
+		"vite": "^5.4.4"
 	},
 	"devDependencies": {
 		"@acdh-oeaw/eslint-config": "^2.0.1",
@@ -82,7 +82,7 @@
 		"@acdh-oeaw/eslint-config-tailwindcss": "^2.0.1",
 		"@acdh-oeaw/prettier-config": "^2.0.0",
 		"@acdh-oeaw/stylelint-config": "^2.0.4",
-		"@acdh-oeaw/tsconfig": "^1.1.1",
+		"@acdh-oeaw/tsconfig": "^1.2.0",
 		"@astrojs/check": "^0.9.3",
 		"@astrojs/ts-plugin": "^1.10.2",
 		"@playwright/test": "^1.47.0",
@@ -113,9 +113,9 @@
 		"schema-dts": "^1.1.2",
 		"simple-git-hooks": "^2.11.1",
 		"stylelint": "^16.9.0",
-		"tailwindcss": "^3.4.10",
+		"tailwindcss": "^3.4.11",
 		"type-fest": "^4.26.1",
-		"typescript": "^5.5.4",
+		"typescript": "^5.6.2",
 		"vfile": "^6.0.3"
 	},
 	"browserslist": {

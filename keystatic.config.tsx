@@ -1,11 +1,11 @@
 /* @jsxImportSource react */
 
+import { withI18nPrefix } from "@acdh-oeaw/keystatic-lib";
 import { config } from "@keystatic/core";
 
 import { env } from "@/config/env.config";
 import { locales } from "@/config/i18n.config";
 import { conferences, events, links, pages, steeringCommittee } from "@/lib/keystatic/collections";
-import { withI18nPrefix } from "@/lib/keystatic/lib";
 import { Logo } from "@/lib/keystatic/logo";
 import { indexPage, metadata, navigation } from "@/lib/keystatic/singletons";
 

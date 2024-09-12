@@ -1,24 +1,20 @@
-import { fields, singleton } from "@keystatic/core";
-
 import {
 	createAssetOptions,
 	createContentFieldOptions,
 	createLabel,
 	createSingleton,
-	createSingletonPaths,
 	withI18nPrefix,
-} from "@/lib/keystatic/lib";
+} from "@acdh-oeaw/keystatic-lib";
+import { fields, singleton } from "@keystatic/core";
+
 import * as validation from "@/lib/keystatic/validation";
 
-export const indexPage = createSingleton((locale) => {
-	const paths = createSingletonPaths("/index-page/", locale);
-
+export const indexPage = createSingleton("/index-page/", (paths, locale) => {
 	return singleton({
 		label: createLabel("Home page", locale),
 		path: paths.contentPath,
 		format: { data: "json" },
 		entryLayout: "form",
-		// previewUrl: createPreviewUrl("/"),
 		schema: {
 			hero: fields.object(
 				{
@@ -168,9 +164,7 @@ export const indexPage = createSingleton((locale) => {
 	});
 });
 
-export const metadata = createSingleton((locale) => {
-	const paths = createSingletonPaths("/metadata/", locale);
-
+export const metadata = createSingleton("/metadata/", (paths, locale) => {
 	return singleton({
 		label: createLabel("Metadata", locale),
 		path: paths.contentPath,
@@ -223,9 +217,7 @@ export const metadata = createSingleton((locale) => {
 	});
 });
 
-export const navigation = createSingleton((locale) => {
-	const paths = createSingletonPaths("/navigation/", locale);
-
+export const navigation = createSingleton("/navigation/", (paths, locale) => {
 	const links = {
 		link: fields.object(
 			{
