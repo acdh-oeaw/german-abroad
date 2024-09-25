@@ -1,5 +1,4 @@
 @import url("./tokens.css");
-@import url("./layout.css");
 
 :where(:root) {
 	font-size: var(--font-size-small);
@@ -19,4 +18,8 @@
 	background-image: radial-gradient(at 15% 15%, hsl(0deg 0% 100% / 70%) 0, transparent 50%),
 		radial-gradient(at 64% 96%, hsl(0deg 100% 100% / 70%) 0, transparent 50%),
 		radial-gradient(at 100% 30%, hsl(0deg 100% 100% / 70%) 0, transparent 50%);
+}
+
+.container {
+	@apply mx-auto w-full max-w-screen-lg px-sm md:px-md;
 }

@@ -1,4 +1,12 @@
-import type { CompileOptions } from "@mdx-js/mdx";
+import {
+	type MdxProcessorOptions,
+	typographyConfig,
+	withCustomHeadingIds,
+	withFootnotes,
+	withIframeTitles,
+	// withImageSizes,
+	withTableOfContents,
+} from "@acdh-oeaw/mdx-lib";
 import withSyntaxHighlighter from "@shikijs/rehype";
 import type { ElementContent } from "hast";
 import withHeadingIds from "rehype-slug";
@@ -6,15 +14,9 @@ import withFrontmatter from "remark-frontmatter";
 import withGfm from "remark-gfm";
 import withMdxFrontmatter from "remark-mdx-frontmatter";
 import withTypographicQuotes from "remark-smartypants";
-import type { Options as TypographicOptions } from "retext-smartypants";
 import type { BuiltinTheme, CodeOptionsThemes } from "shiki";
 
 import type { Locale } from "@/config/i18n.config";
-import { withCustomHeadingIds } from "@/lib/content/with-custom-heading-ids";
-import { withFootnotes } from "@/lib/content/with-footnotes";
-import { withIframeTitles } from "@/lib/content/with-iframe-titles";
-import { withImageImports } from "@/lib/content/with-image-imports";
-import { withMdxTableOfContents, withTableOfContents } from "@/lib/content/with-table-of-contents";
 import { createI18n } from "@/lib/i18n/create-i18n";
 
 const syntaxHighlighterConfig: CodeOptionsThemes<BuiltinTheme> = {
@@ -25,21 +27,10 @@ const syntaxHighlighterConfig: CodeOptionsThemes<BuiltinTheme> = {
 	},
 };
 
-const typographyConfig: Record<Locale, TypographicOptions> = {
-	de: {
-		openingQuotes: { double: "„", single: "‚" },
-		closingQuotes: { double: "“", single: "‘" },
-	},
-	en: {
-		openingQuotes: { double: "“", single: "‘" },
-		closingQuotes: { double: "”", single: "’" },
-	},
-};
-
-export async function createMdxConfig(locale: Locale): Promise<CompileOptions> {
+export async function createMdxConfig(locale: Locale): Promise<MdxProcessorOptions> {
 	const { t } = await createI18n(locale);
 
-	const config: CompileOptions = {
+	const config: MdxProcessorOptions = {
 		elementAttributeNameCase: "html",
 		jsxImportSource: "astro",
 		remarkPlugins: [
@@ -78,13 +69,12 @@ export async function createMdxConfig(locale: Locale): Promise<CompileOptions> {
 			footnoteLabelTagName: "h2",
 		},
 		rehypePlugins: [
-			withCustomHeadingIds,
 			withHeadingIds,
-			withTableOfContents,
-			withMdxTableOfContents,
-			withIframeTitles,
+			withCustomHeadingIds,
+			[withIframeTitles, { components: ["Embed", "Video"] }],
+			// [withImageSizes, { components: ["Figure"] }],
 			[withSyntaxHighlighter, syntaxHighlighterConfig],
-			withImageImports,
+			withTableOfContents,
 		],
 	};
 

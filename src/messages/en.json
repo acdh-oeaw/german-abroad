@@ -11,5 +11,33 @@
 	"mdx": {
 		"footnote-back-label": "Back to reference {reference}",
 		"footnotes": "Footnotes"
+	},
+	"ImprintPage": {
+		"meta": {
+			"title": "Imprint"
+		},
+		"title": "Imprint"
+	},
+	"IndexPage": {
+		"meta": {
+			"title": "Home"
+		}
+	},
+	"LocaleSwitcher": {
+		"current-locale": "Current locale: {locale}",
+		"switch-locale": "Switch locale",
+		"switch-locale-to": "Switch to {locale}"
+	},
+	"MobileNavToggle": {
+		"label": "Open navigation menu"
+	},
+	"NotFoundPage": {
+		"meta": {
+			"title": "Page not found"
+		},
+		"title": "Page not found"
+	},
+	"SkipLink": {
+		"skip-to-main-content": "Skip to main content"
 	}
 }

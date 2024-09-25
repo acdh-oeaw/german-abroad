@@ -1,8 +1,8 @@
-import { createReaders } from "@acdh-oeaw/keystatic-lib";
+import { createReaders } from "@acdh-oeaw/keystatic-lib/reader";
 
-import { getMdxContent } from "@/lib/content/get-mdx-content";
-import config from "~/keystatic.config.tsx";
+import { compileMdx } from "@/lib/content/compile-mdx";
+import config from "~/keystatic.config";
 
-const { createCollectionResource, createSingletonResource } = createReaders(config, getMdxContent);
+const { createCollectionResource, createSingletonResource } = createReaders(config, compileMdx);
 
 export { createCollectionResource, createSingletonResource };

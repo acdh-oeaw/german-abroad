@@ -5,7 +5,7 @@ import "tailwindcss/tailwind.css";
 import "@/styles/index.css";
 
 import type { Locale } from "@/config/i18n.config";
-import { createSingletonResource } from "@/lib/content/create-resource";
+import { createI18n } from "@/lib/i18n/create-i18n";
 
 interface Props {
 	locale: Locale;
@@ -14,7 +14,7 @@ interface Props {
 
 const { locale, title } = Astro.props;
 
-const metadata = await createSingletonResource("metadata", locale).read();
+const { t } = await createI18n(locale);
 ---
 
 <html lang={locale}>
@@ -23,7 +23,7 @@ const metadata = await createSingletonResource("metadata", locale).read();
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="color-scheme" content="light" />
 
-		<title>{[title, metadata.data.title].join(" | ")}</title>
+		<title>{[title, t("metadata.title")].join(" | ")}</title>
 	</head>
 
 	<body>

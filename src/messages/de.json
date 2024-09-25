@@ -9,7 +9,35 @@
 		"website": "Website"
 	},
 	"mdx": {
-		"footnote-back-label": "Zurück zur Referenz {reference}",
+		"footnote-back-label": "Zurück zu Verweis {reference}",
 		"footnotes": "Fußnoten"
+	},
+	"ImprintPage": {
+		"meta": {
+			"title": "Impressum"
+		},
+		"title": "Impressum"
+	},
+	"LocaleSwitcher": {
+		"current-locale": "Aktuelle Sprache: {locale}",
+		"switch-locale": "Sprache wechseln",
+		"switch-locale-to": "Zu {locale} wechseln"
+	},
+	"MobileNavToggle": {
+		"label": "Navigationsmenü öffnen"
+	},
+	"IndexPage": {
+		"meta": {
+			"title": "Startseite"
+		}
+	},
+	"NotFoundPage": {
+		"meta": {
+			"title": "Seite nicht gefunden"
+		},
+		"title": "Seite nicht gefunden"
+	},
+	"SkipLink": {
+		"skip-to-main-content": "Zum Hauptinhalt springen"
 	}
 }
