@@ -28,7 +28,7 @@ const { t } = await createI18n(locale);
 
 const conference = await createCollectionResource("conferences", locale).read(id);
 
-const { content, date, hosts, image, location, title } = conference.data;
+const { content, date, endDate, hosts, image, location, title } = conference.data;
 
 const { default: Content } = await conference.compile(content);
 
@@ -50,7 +50,13 @@ const formatter = getFormatter(locale);
 						<div class="leading-snug">
 							<dt class="text-uppercase uppercase">{t("common.date")}</dt>
 							<dd>
-								<time datetime={date}>{formatter.date.format(new Date(date))}</time>
+								<time datetime={date}>
+									{
+										endDate
+											? formatter.date.formatRange(new Date(date), new Date(endDate))
+											: formatter.date.format(new Date(date))
+									}
+								</time>
 							</dd>
 						</div>
 						<div class="leading-snug">
