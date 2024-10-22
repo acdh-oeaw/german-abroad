@@ -137,7 +137,7 @@ const config: Config = {
 				return {
 					DEFAULT: {
 						css: {
-							// maxWidth: null,
+							maxWidth: null,
 							/** Don't add quotes around `blockquote`. */
 							"blockquote p:first-of-type::before": null,
 							"blockquote p:last-of-type::after": null,
