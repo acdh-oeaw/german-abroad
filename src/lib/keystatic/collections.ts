@@ -27,8 +27,12 @@ export const conferences = createCollection((locale) => {
 				},
 			}),
 			date: fields.date({
-				label: "Date",
+				label: "Start date",
 				validation: { isRequired: true },
+			}),
+			endDate: fields.date({
+				label: "End date",
+				validation: { isRequired: false },
 			}),
 			location: fields.text({
 				label: "Location",
