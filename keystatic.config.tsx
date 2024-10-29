@@ -4,7 +4,7 @@ import { config } from "@keystatic/core";
 
 import { env } from "@/config/env.config";
 import { locales } from "@/config/i18n.config";
-import { conferences, events, links, pages, steeringCommittee } from "@/lib/keystatic/collections";
+import { conferences, events, links, pages } from "@/lib/keystatic/collections";
 import { withI18nPrefix } from "@/lib/keystatic/lib";
 import { Logo } from "@/lib/keystatic/logo";
 import { indexPage, metadata, navigation } from "@/lib/keystatic/singletons";
@@ -19,9 +19,6 @@ export default config({
 
 		[withI18nPrefix("links", "de")]: links("de"),
 		[withI18nPrefix("links", "en")]: links("en"),
-
-		[withI18nPrefix("steeringCommittee", "de")]: steeringCommittee("de"),
-		[withI18nPrefix("steeringCommittee", "en")]: steeringCommittee("en"),
 
 		[withI18nPrefix("pages", "de")]: pages("de"),
 		[withI18nPrefix("pages", "en")]: pages("en"),
@@ -63,7 +60,6 @@ export default config({
 			Conferences: locales.map((locale) => withI18nPrefix("conferences", locale)),
 			Events: locales.map((locale) => withI18nPrefix("events", locale)),
 			Links: locales.map((locale) => withI18nPrefix("links", locale)),
-			"Steering committee": locales.map((locale) => withI18nPrefix("steeringCommittee", locale)),
 			Pages: locales.map((locale) => withI18nPrefix("pages", locale)),
 			Navigation: locales.map((locale) => withI18nPrefix("navigation", locale)),
 			Metadata: locales.map((locale) => withI18nPrefix("metadata", locale)),
