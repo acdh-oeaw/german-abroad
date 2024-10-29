@@ -17,22 +17,8 @@
     {
       "discriminant": "page",
       "value": {
-        "label": "Veranstaltungen",
-        "id": "events"
-      }
-    },
-    {
-      "discriminant": "page",
-      "value": {
         "label": "Steering committee",
         "id": "steering-committee"
-      }
-    },
-    {
-      "discriminant": "page",
-      "value": {
-        "label": "Links",
-        "id": "links"
       }
     }
   ]
