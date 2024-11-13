@@ -239,7 +239,7 @@ export const navigation = createSingleton((locale) => {
 				}),
 			},
 			{
-				label: "Link",
+				label: "Custom link",
 			},
 		),
 		page: fields.object(
@@ -255,7 +255,7 @@ export const navigation = createSingleton((locale) => {
 				}),
 			},
 			{
-				label: "Page",
+				label: "Link to page",
 			},
 		),
 		separator: fields.empty(),

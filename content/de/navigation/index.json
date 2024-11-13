@@ -1,39 +1,39 @@
 {
-  "links": [
-    {
-      "discriminant": "link",
-      "value": {
-        "label": "Startseite",
-        "href": "/"
-      }
-    },
-    {
-      "discriminant": "page",
-      "value": {
-        "label": "Konferenzen",
-        "id": "conferences"
-      }
-    },
-    {
-      "discriminant": "link",
-      "value": {
-        "label": "Publikationen",
-        "href": "publikationen"
-      }
-    },
-    {
-      "discriminant": "page",
-      "value": {
-        "label": "Steering committee",
-        "id": "steering-committee"
-      }
-    },
-    {
-      "discriminant": "link",
-      "value": {
-        "label": "Links",
-        "href": "links"
-      }
-    }
-  ]
+	"links": [
+		{
+			"discriminant": "link",
+			"value": {
+				"label": "Startseite",
+				"href": "/"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Konferenzen",
+				"id": "conferences"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Publikationen",
+				"id": "publications"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Steering committee",
+				"id": "steering-committee"
+			}
+		},
+		{
+			"discriminant": "page",
+			"value": {
+				"label": "Links",
+				"id": "links"
+			}
+		}
+	]
 }
