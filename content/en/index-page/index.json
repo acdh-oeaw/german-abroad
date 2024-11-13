@@ -1,26 +1,35 @@
 {
-  "hero": {
-    "title": "German Abroad",
-    "subtitle": "Extraterritorial varieties of German worldwide"
-  },
-  "sections": [
-    {
-      "discriminant": "text",
-      "value": {
-        "title": "About us",
-        "lead": "'German Abroad - Extraterritorial Varieties of German Worldwide' is a conference series that began in Vienna in 2014 and has since taken place in Austin (2016), Erfurt (2018) Windhoek (2021) and most recently in cooperation in Eichstätt and Munich (2023)."
-      }
-    },
-    {
-      "discriminant": "data",
-      "value": {
-        "title": "Conferences",
-        "lead": "An overview of past conferences.",
-        "collections": [
-          "conferences"
-        ],
-        "count": 6
-      }
-    }
-  ]
+	"hero": {
+		"title": "German Abroad",
+		"subtitle": "Extraterritorial varieties of German worldwide"
+	},
+	"sections": [
+		{
+			"discriminant": "text",
+			"value": {
+				"title": "About us",
+				"lead": "'German Abroad - Extraterritorial Varieties of German Worldwide' is a conference series that began in Vienna in 2014 and has since taken place in Austin (2016), Erfurt (2018) Windhoek (2021) and most recently in cooperation in Eichstätt and Munich (2023)."
+			}
+		},
+		{
+			"discriminant": "data",
+			"value": {
+				"title": "Upcoming conferences",
+				"lead": "An overview of upcoming conferences.",
+				"collections": ["conferences"],
+				"filter": "future",
+				"count": 3
+			}
+		},
+		{
+			"discriminant": "data",
+			"value": {
+				"title": "Past conferences",
+				"lead": "An overview of past conferences.",
+				"collections": ["conferences"],
+				"filter": "past",
+				"count": 6
+			}
+		}
+	]
 }

@@ -76,6 +76,19 @@ const formatter = getFormatter(locale);
 							)
 						)
 							.flat()
+							.filter((entry) => {
+								switch (section.value.filter) {
+									case "all": {
+										return true;
+									}
+									case "future": {
+										return new Date(entry.data.date).getTime() > Date.now();
+									}
+									case "past": {
+										return new Date(entry.data.date).getTime() < Date.now();
+									}
+								}
+							})
 							.sort((a, z) => {
 								return compareDesc(a.data.date, z.data.date);
 							})

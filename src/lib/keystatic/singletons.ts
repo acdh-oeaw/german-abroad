@@ -71,6 +71,15 @@ export const indexPage = createSingleton((locale) => {
 									],
 									defaultValue: ["conferences", "events"],
 								}),
+								filter: fields.select({
+									label: "Filter",
+									options: [
+										{ label: "All", value: "all" },
+										{ label: "Past", value: "past" },
+										{ label: "Future", value: "future" },
+									],
+									defaultValue: "all",
+								}),
 								count: fields.number({
 									label: "Count",
 									validation: { isRequired: true },
