@@ -15,10 +15,24 @@
       }
     },
     {
+      "discriminant": "link",
+      "value": {
+        "label": "Publikationen",
+        "href": "publikationen"
+      }
+    },
+    {
       "discriminant": "page",
       "value": {
         "label": "Steering committee",
         "id": "steering-committee"
+      }
+    },
+    {
+      "discriminant": "link",
+      "value": {
+        "label": "Links",
+        "href": "links"
       }
     }
   ]
