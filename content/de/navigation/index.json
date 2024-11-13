@@ -27,6 +27,13 @@
         "label": "Steering committee",
         "id": "steering-committee"
       }
+    },
+    {
+      "discriminant": "link",
+      "value": {
+        "label": "Links",
+        "href": "links"
+      }
     }
   ]
 }
