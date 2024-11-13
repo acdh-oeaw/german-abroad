@@ -29,10 +29,10 @@
       }
     },
     {
-      "discriminant": "link",
+      "discriminant": "page",
       "value": {
         "label": "Links",
-        "href": "links"
+        "id": "links"
       }
     }
   ]
