@@ -15,10 +15,10 @@
       }
     },
     {
-      "discriminant": "link",
+      "discriminant": "page",
       "value": {
         "label": "Publikationen",
-        "href": "publications"
+        "id": "publications"
       }
     },
     {
