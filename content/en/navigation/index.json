@@ -17,6 +17,13 @@
     {
       "discriminant": "page",
       "value": {
+        "label": "Publications",
+        "id": "publications"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": {
         "label": "Steering committee",
         "id": "steering-committee"
       }
