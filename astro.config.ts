@@ -67,6 +67,14 @@ export default defineConfig({
 					: "/keystatic",
 			status: 307,
 		},
+		"/de/publications": {
+			destination: "/de/publikationen",
+			status: 307,
+		},
+		"/en/publikationen": {
+			destination: "/en/publications",
+			status: 307,
+		},
 	},
 	scopedStyleStrategy: "where",
 	server: {
