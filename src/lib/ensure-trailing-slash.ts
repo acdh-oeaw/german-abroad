@@ -3,5 +3,5 @@ export function ensureTrailingSlash(pathname: string): string {
 
 	if (pathname.split("/").at(-1)?.includes(".")) return pathname;
 
-	return pathname + "/";
+	return `${pathname  }/`;
 }

@@ -25,7 +25,7 @@ export function withCustomHeadingIds() {
 			assert(id, "`<HeadingId>` has no `id` prop.");
 
 			if (parent.properties.id == null) {
-				parent.properties.id = String(id);
+				parent.properties.id = String(id as string);
 			}
 
 			parent.children.splice(index, 1);

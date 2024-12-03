@@ -36,6 +36,7 @@ export default defineConfig({
 				simpleIcons: ["orcid"],
 			},
 		}),
+		/** Only needed to make the astro jsx runtime work correctly. */
 		mdx(),
 		react({
 			include: reactFiles,
@@ -54,7 +55,6 @@ export default defineConfig({
 			exclude: reactFiles,
 		}),
 	],
-	output: "hybrid",
 	prefetch: {
 		defaultStrategy: "hover",
 		prefetchAll: true,
@@ -69,9 +69,6 @@ export default defineConfig({
 		},
 	},
 	scopedStyleStrategy: "where",
-	security: {
-		checkOrigin: true,
-	},
 	server: {
 		/** Required by keystatic. */
 		host: "127.0.0.1",
