@@ -31,7 +31,7 @@ const content = await request(createImprintUrl(locale), { responseType: "text" }
 					<img alt="" class="absolute inset-0 size-full object-cover" loading="eager" src={image} />
 				) : null
 			}
-			<div class="container border-b py-2xl">
+			<div class="container relative border-b py-2xl">
 				<div class="grid gap-y-sm">
 					<h1 class="text-display lowercase">{title}.</h1>
 				</div>
