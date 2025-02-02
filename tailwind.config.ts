@@ -6,14 +6,6 @@ const config: Config = {
 	corePlugins: {
 		container: false,
 	},
-	darkMode: [
-		"variant",
-		[
-			':where([data-ui-color-scheme="dark"]) &',
-			/** Keystatic. */
-			":where(.kui-theme.kui-scheme--dark) &",
-		],
-	],
 	plugins: [typographyPlugin],
 	theme: {
 		extend: {

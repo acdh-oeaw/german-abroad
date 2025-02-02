@@ -4,6 +4,7 @@ import { compareDesc } from "date-fns";
 
 import Card from "@/components/card.astro";
 import GridList from "@/components/grid-list.astro";
+import ImageOverlay from "@/components/image-overlay.astro";
 import Section from "@/components/section.astro";
 import { locales } from "@/config/i18n.config";
 import Layout from "@/layouts/page.layout.astro";
@@ -39,15 +40,23 @@ const formatter = getFormatter(locale);
 		<section class="relative">
 			{
 				image ? (
-					<img alt="" class="absolute inset-0 size-full object-cover" loading="eager" src={image} />
+					<>
+						<img
+							alt=""
+							class="absolute inset-0 size-full object-cover"
+							loading="eager"
+							src={image}
+						/>
+						<ImageOverlay />
+					</>
 				) : null
 			}
-			<div class="container relative border-b py-2xl">
+			<div class:list={[image && "text-white"]} class="container relative border-b py-2xl">
 				<div class="grid gap-y-sm">
 					<h1 class="text-display lowercase">{title}.</h1>
 					{
 						content ? (
-							<div>
+							<div class="font-semibold">
 								<Content />
 							</div>
 						) : null

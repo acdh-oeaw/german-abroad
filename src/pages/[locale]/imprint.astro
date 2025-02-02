@@ -2,6 +2,7 @@
 import { request } from "@acdh-oeaw/lib";
 import type { GetStaticPathsResult } from "astro";
 
+import ImageOverlay from "@/components/image-overlay.astro";
 import Section from "@/components/section.astro";
 import { locales } from "@/config/i18n.config";
 import { createImprintUrl } from "@/config/imprint.config";
@@ -28,10 +29,18 @@ const content = await request(createImprintUrl(locale), { responseType: "text" }
 		<section class="relative">
 			{
 				image ? (
-					<img alt="" class="absolute inset-0 size-full object-cover" loading="eager" src={image} />
+					<>
+						<img
+							alt=""
+							class="absolute inset-0 size-full object-cover"
+							loading="eager"
+							src={image}
+						/>
+						<ImageOverlay />
+					</>
 				) : null
 			}
-			<div class="container relative border-b py-2xl">
+			<div class:list={[image && "text-white"]} class="container relative border-b py-2xl">
 				<div class="grid gap-y-sm">
 					<h1 class="text-display lowercase">{title}.</h1>
 				</div>
