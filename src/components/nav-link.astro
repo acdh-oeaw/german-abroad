@@ -6,6 +6,9 @@ interface Props extends Omit<LocaleLinkProps, "class"> {}
 const props = Astro.props;
 ---
 
-<LocaleLink {...props} class="transition hover:text-text-brand font-emphasised aria-[current]:font-strong">
+<LocaleLink
+	{...props}
+	class="font-emphasised transition hover:text-text-brand aria-[current]:font-strong"
+>
 	<slot />
 </LocaleLink>

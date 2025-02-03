@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPathsResult } from "astro";
+import { imageConfig } from "astro:assets";
 import { compareDesc } from "date-fns";
 
 import Card from "@/components/card.astro";
@@ -13,7 +14,6 @@ import Layout from "@/layouts/page.layout.astro";
 import { createCollectionResource, createSingletonResource } from "@/lib/content/create-resource";
 import { getFormatter } from "@/lib/formatter";
 import { createI18n } from "@/lib/i18n/create-i18n";
-import { imageConfig } from "astro:assets";
 
 export async function getStaticPaths() {
 	return locales.map((locale) => {
@@ -46,7 +46,7 @@ const formatter = getFormatter(locale);
 						/>
 						<ImageOverlay />
 						{hero.image.caption ? (
-							<figcaption class="absolute z-10 bottom-2 right-2 text-xs font-medium">
+							<figcaption class="absolute bottom-2 right-2 z-10 text-xs font-medium">
 								{hero.image.caption}
 							</figcaption>
 						) : null}
@@ -127,11 +127,13 @@ const formatter = getFormatter(locale);
 														<Card href={href} image={image} title={title}>
 															<dl class="grid content-start gap-y-xs text-text-weak">
 																<div class="leading-snug">
-																	<dt class="text-uppercase uppercase text-xs font-bold">{t("common.date")}</dt>
-																	<dd class="font-medium">{formatter.date.format(new Date(date))}</dd>
+																	<dt class="text-uppercase uppercase">{t("common.date")}</dt>
+																	<dd class="font-medium">
+																		{formatter.date.format(new Date(date))}
+																	</dd>
 																</div>
 																<div class="leading-snug">
-																	<dt class="text-uppercase uppercase text-xs font-bold">{t("common.location")}</dt>
+																	<dt class="text-uppercase uppercase">{t("common.location")}</dt>
 																	<dd class="font-medium">{location}</dd>
 																</div>
 															</dl>

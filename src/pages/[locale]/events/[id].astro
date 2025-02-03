@@ -49,7 +49,7 @@ const formatter = getFormatter(locale);
 							src={image.src}
 						/>
 						{image.caption ? (
-							<figcaption class="absolute z-10 bottom-1.5 right-2 text-xs font-medium text-neutral-300">
+							<figcaption class="absolute bottom-1.5 right-2 z-10 text-xs font-medium text-neutral-300">
 								{image.caption}
 							</figcaption>
 						) : null}
@@ -65,13 +65,13 @@ const formatter = getFormatter(locale);
 					<h1 class="text-display lowercase">{title}.</h1>
 					<dl class="ml-12 flex flex-wrap gap-x-xl gap-y-sm font-semibold">
 						<div class="leading-snug">
-							<dt class="text-uppercase uppercase text-xs font-bold">{t("common.date")}</dt>
+							<dt class="text-uppercase uppercase">{t("common.date")}</dt>
 							<dd class="font-medium">
 								<time datetime={date}>{formatter.date.format(new Date(date))}</time>
 							</dd>
 						</div>
 						<div class="leading-snug">
-							<dt class="text-uppercase uppercase text-xs font-bold">{t("common.location")}</dt>
+							<dt class="text-uppercase uppercase">{t("common.location")}</dt>
 							<dd class="font-medium">{location}</dd>
 						</div>
 					</dl>
