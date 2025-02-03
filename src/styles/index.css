@@ -1,12 +1,13 @@
 @import url("./tokens.css");
 @import url("./layout.css");
 
-:where(:root) {
+:root {
 	font-size: var(--font-size-small);
 	font-family: var(--font-family-body);
 }
 
-:where(html, body) {
+:root,
+body {
 	height: 100%;
 }
 

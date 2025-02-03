@@ -58,11 +58,22 @@ export const conferences = createCollection((locale) => {
 					validation: { length: { min: 1 } },
 				},
 			),
-			image: fields.image({
-				label: "Image",
-				validation: { isRequired: false },
-				...createAssetOptions(paths.assetPath),
-			}),
+			image: fields.object(
+				{
+					src: fields.image({
+						label: "Image",
+						validation: { isRequired: false },
+						...createAssetOptions(paths.assetPath),
+					}),
+					caption: fields.text({
+						label: "Image caption",
+						validation: { isRequired: false },
+					}),
+				},
+				{
+					label: "Image",
+				},
+			),
 			summary: fields.text({
 				label: "Summary",
 				validation: { isRequired: true },
@@ -103,11 +114,22 @@ export const events = createCollection((locale) => {
 				label: "Location",
 				validation: { isRequired: true },
 			}),
-			image: fields.image({
-				label: "Image",
-				validation: { isRequired: false },
-				...createAssetOptions(paths.assetPath),
-			}),
+			image: fields.object(
+				{
+					src: fields.image({
+						label: "Image",
+						validation: { isRequired: false },
+						...createAssetOptions(paths.assetPath),
+					}),
+					caption: fields.text({
+						label: "Image caption",
+						validation: { isRequired: false },
+					}),
+				},
+				{
+					label: "Image",
+				},
+			),
 			summary: fields.text({
 				label: "Summary",
 				validation: { isRequired: true },
@@ -140,11 +162,22 @@ export const pages = createCollection((locale) => {
 					validation: { isRequired: true },
 				},
 			}),
-			image: fields.image({
-				label: "Image",
-				validation: { isRequired: false },
-				...createAssetOptions(paths.assetPath),
-			}),
+			image: fields.object(
+				{
+					src: fields.image({
+						label: "Image",
+						validation: { isRequired: false },
+						...createAssetOptions(paths.assetPath),
+					}),
+					caption: fields.text({
+						label: "Image caption",
+						validation: { isRequired: false },
+					}),
+				},
+				{
+					label: "Image",
+				},
+			),
 			summary: fields.text({
 				label: "Summary",
 				validation: { isRequired: true },

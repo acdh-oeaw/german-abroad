@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPathsResult } from "astro";
+import { imageConfig } from "astro:assets";
 import { compareDesc } from "date-fns";
 
 import Card from "@/components/card.astro";
@@ -33,23 +34,28 @@ const formatter = getFormatter(locale);
 
 <Layout locale={locale} title={hero.title}>
 	<main class="mb-2xl">
-		<section class="relative">
+		<section class:list={[hero.image?.src && "border-b border-neutral-200"]} class="relative">
 			{
-				hero.image ? (
-					<>
+				hero.image?.src ? (
+					<figure>
 						<img
 							alt=""
 							class="absolute inset-0 size-full object-cover"
 							loading="eager"
-							src={hero.image}
+							src={hero.image.src}
 						/>
 						<ImageOverlay />
-					</>
+						{hero.image.caption ? (
+							<figcaption class="absolute bottom-2 right-2 z-10 text-xs font-medium">
+								{hero.image.caption}
+							</figcaption>
+						) : null}
+					</figure>
 				) : null
 			}
 			<div
-				class:list={[hero.image && "text-white"]}
-				class="container relative z-10 border-b py-2xl"
+				class:list={[hero.image?.src ? "text-white" : "border-b border-neutral-200"]}
+				class="container relative z-10 py-2xl"
 			>
 				<div class="grid justify-start justify-items-start gap-y-xs py-2xl sm:gap-y-0">
 					<!-- <h1 class="text-display lowercase text-text-strong">{hero.title}</h1> -->
@@ -60,7 +66,8 @@ const formatter = getFormatter(locale);
 						{hero.title}.
 					</h1>
 					<p
-						class="relative inline-block text-2xl font-semibold tracking-tight text-text-weak sm:ml-12 md:ml-16 md:text-3xl"
+						class:list={[hero.image?.src ? "text-white" : "text-text-weak"]}
+						class="relative inline-block text-2xl font-semibold tracking-tight sm:ml-12 md:ml-16 md:text-3xl"
 					>
 						{hero.subtitle}
 					</p>
@@ -121,11 +128,13 @@ const formatter = getFormatter(locale);
 															<dl class="grid content-start gap-y-xs text-text-weak">
 																<div class="leading-snug">
 																	<dt class="text-uppercase uppercase">{t("common.date")}</dt>
-																	<dd>{formatter.date.format(new Date(date))}</dd>
+																	<dd class="font-medium">
+																		{formatter.date.format(new Date(date))}
+																	</dd>
 																</div>
 																<div class="leading-snug">
 																	<dt class="text-uppercase uppercase">{t("common.location")}</dt>
-																	<dd>{location}</dd>
+																	<dd class="font-medium">{location}</dd>
 																</div>
 															</dl>
 														</Card>

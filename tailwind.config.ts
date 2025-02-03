@@ -115,6 +115,7 @@ const config: Config = {
 			},
 			fontWeight: {
 				weak: "var(--font-weight-weak)",
+				emphasised: "var(--font-weight-emphasised)",
 				strong: "var(--font-weight-strong)",
 			},
 			spacing: {

@@ -4,7 +4,7 @@ import LocaleLink from "@/components/locale-link.astro";
 
 export interface Props {
 	href: string;
-	image?: string | null;
+	image?: { src?: string | null; caption?: string };
 	title: string;
 }
 
@@ -16,9 +16,14 @@ const { href, image, title } = Astro.props;
 >
 	<div class="bg-mesh relative aspect-video border-b border-neutral-200">
 		{
-			image ? (
+			image?.src ? (
 				<>
-					<img alt="" class="absolute inset-0 size-full object-cover" loading="lazy" src={image} />
+					<img
+						alt=""
+						class="absolute inset-0 size-full object-cover"
+						loading="lazy"
+						src={image.src}
+					/>
 					<ImageOverlay variant="light" />
 				</>
 			) : null
