@@ -37,21 +37,29 @@ const formatter = getFormatter(locale);
 
 <Layout locale={locale} title={title}>
 	<main class="mb-2xl">
-		<section class="relative">
+		<section class:list={[image?.src && "border-b border-neutral-200"]} class="relative">
 			{
-				image ? (
-					<>
+				image?.src ? (
+					<figure>
 						<img
 							alt=""
 							class="absolute inset-0 size-full object-cover"
 							loading="eager"
-							src={image}
+							src={image.src}
 						/>
+						{image.caption ? (
+							<figcaption class="absolute z-10 bottom-1.5 right-2 text-xs font-medium text-neutral-300">
+								{image.caption}
+							</figcaption>
+						) : null}
 						<ImageOverlay />
-					</>
+					</figure>
 				) : null
 			}
-			<div class:list={[image && "text-white"]} class="container relative border-b py-2xl">
+			<div
+				class:list={[image?.src ? "text-white" : "border-b border-neutral-200"]}
+				class="container relative py-2xl"
+			>
 				<div class="grid gap-y-sm">
 					<h1 class="text-display lowercase">{title}.</h1>
 					{
@@ -82,14 +90,14 @@ const formatter = getFormatter(locale);
 										<Card href={href} image={image} title={title}>
 											<dl class="grid content-start gap-y-xs text-text-weak">
 												<div class="leading-snug">
-													<dt class="text-uppercase uppercase">{t("common.date")}</dt>
-													<dd>
+													<dt class="text-uppercase uppercase text-xs font-bold">{t("common.date")}</dt>
+													<dd class="font-medium">
 														<time datetime={date}>{formatter.date.format(new Date(date))}</time>
 													</dd>
 												</div>
 												<div class="leading-snug">
-													<dt class="text-uppercase uppercase">{t("common.location")}</dt>
-													<dd>{location}</dd>
+													<dt class="text-uppercase uppercase text-xs font-bold">{t("common.location")}</dt>
+													<dd class="font-medium">{location}</dd>
 												</div>
 											</dl>
 										</Card>

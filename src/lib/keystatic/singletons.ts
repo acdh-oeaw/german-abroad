@@ -35,11 +35,22 @@ export const indexPage = createSingleton((locale) => {
 						validation: { isRequired: false },
 						multiline: true,
 					}),
-					image: fields.image({
-						label: "Image",
-						validation: { isRequired: false },
-						...createAssetOptions(paths.assetPath),
-					}),
+					image: fields.object(
+						{
+							src: fields.image({
+								label: "Image",
+								validation: { isRequired: false },
+								...createAssetOptions(paths.assetPath),
+							}),
+							caption: fields.text({
+								label: "Image caption",
+								validation: { isRequired: false },
+							}),
+						},
+						{
+							label: "Image",
+						},
+					),
 				},
 				{
 					label: "Hero section",
