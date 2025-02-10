@@ -1,5 +1,6 @@
 import { collection, fields } from "@keystatic/core";
 
+import { createDownloadLink } from "@/lib/keystatic/components";
 import {
 	createAssetOptions,
 	createCollection,
@@ -81,8 +82,14 @@ export const conferences = createCollection((locale) => {
 			}),
 			content: fields.mdx({
 				label: "Content",
-				options: createContentFieldOptions(paths.assetPath),
-				components: {},
+				options: {
+					...createContentFieldOptions(paths.assetPath),
+					codeBlock: false,
+					table: false,
+				},
+				components: {
+					DownloadLink: createDownloadLink(paths.assetPath, locale),
+				},
 			}),
 		},
 	});

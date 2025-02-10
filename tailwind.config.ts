@@ -137,6 +137,9 @@ const config: Config = {
 							/** Don't add backticks around inline `code`. */
 							"code::before": null,
 							"code::after": null,
+							"a:hover": {
+								textDecoration: "none",
+							},
 						},
 					},
 				};
