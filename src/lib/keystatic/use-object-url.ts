@@ -10,7 +10,9 @@ export function useObjectUrl(data: Uint8Array | null, contentType: string | unde
 			return undefined;
 		}
 
-		const url = URL.createObjectURL(new Blob([data], { type: contentType }));
+		const url = URL.createObjectURL(
+			new Blob([data as Uint8Array<ArrayBuffer>], { type: contentType }),
+		);
 		setUrl(url);
 
 		return () => {

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-unresolved
 import { defineMiddleware } from "astro:middleware";
 
 /** Required for `manual` i18n routing config in `astro.config.ts`. */

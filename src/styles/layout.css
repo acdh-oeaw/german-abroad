@@ -10,9 +10,9 @@
 
 	display: grid;
 	grid-template-columns: repeat(var(--grid-column-count), minmax(0, var(--grid-column-width)));
+	column-gap: var(--grid-column-width);
 	align-content: start;
 	margin-inline: var(--grid-margin);
-	column-gap: var(--grid-column-width);
 }
 
 @media (width >= 48rem) {

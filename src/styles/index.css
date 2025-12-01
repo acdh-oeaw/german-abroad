@@ -1,5 +1,5 @@
-@import url("./tokens.css");
-@import url("./layout.css");
+@import "./tokens.css";
+@import "./layout.css";
 
 :root {
 	font-size: var(--font-size-small);

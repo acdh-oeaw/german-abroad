@@ -24,8 +24,9 @@ export function withCustomHeadingIds() {
 
 			assert(id, "`<HeadingId>` has no `id` prop.");
 
+			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 			if (parent.properties.id == null) {
-				parent.properties.id = String(id as string);
+				parent.properties.id = String(id as unknown);
 			}
 
 			parent.children.splice(index, 1);
