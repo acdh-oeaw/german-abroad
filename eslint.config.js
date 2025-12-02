@@ -17,12 +17,11 @@ const config = defineConfig([
 	base,
 	{
 		extends: [astro],
-		files: ["**/*.astro"],
+		ignores: reactFiles,
 	},
 	{
 		extends: [react],
 		files: reactFiles,
-		ignores: ["**/*.astro"],
 	},
 	// @ts-expect-error It's fine.
 	tailwindcss,
