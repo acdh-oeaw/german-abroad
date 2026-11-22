@@ -1,17 +1,14 @@
-import { collection, fields } from "@keystatic/core";
-
-import { createDownloadLink } from "@/lib/keystatic/components";
 import {
 	createAssetOptions,
 	createCollection,
-	createCollectionPaths,
 	createContentFieldOptions,
 	createLabel,
-} from "@/lib/keystatic/lib";
+} from "@acdh-oeaw/keystatic-lib";
+import { collection, fields } from "@keystatic/core";
 
-export const conferences = createCollection((locale) => {
-	const paths = createCollectionPaths("/conferences/", locale);
+import { createDownloadLink } from "@/lib/keystatic/components";
 
+export const conferences = createCollection("/conferences/", (paths, locale) => {
 	return collection({
 		label: createLabel("Conferences", locale),
 		path: paths.contentPath,
@@ -83,21 +80,19 @@ export const conferences = createCollection((locale) => {
 			content: fields.mdx({
 				label: "Content",
 				options: {
-					...createContentFieldOptions(paths.assetPath),
+					...createContentFieldOptions(paths),
 					codeBlock: false,
 					table: false,
 				},
 				components: {
-					DownloadLink: createDownloadLink(paths.assetPath, locale),
+					...createDownloadLink(paths, locale),
 				},
 			}),
 		},
 	});
 });
 
-export const events = createCollection((locale) => {
-	const paths = createCollectionPaths("/events/", locale);
-
+export const events = createCollection("/events/", (paths, locale) => {
 	return collection({
 		label: createLabel("Events", locale),
 		path: paths.contentPath,
@@ -144,16 +139,14 @@ export const events = createCollection((locale) => {
 			}),
 			content: fields.mdx({
 				label: "Content",
-				options: createContentFieldOptions(paths.assetPath),
+				options: createContentFieldOptions(paths),
 				components: {},
 			}),
 		},
 	});
 });
 
-export const pages = createCollection((locale) => {
-	const paths = createCollectionPaths("/pages/", locale);
-
+export const pages = createCollection("/pages/", (paths, locale) => {
 	return collection({
 		label: createLabel("Pages", locale),
 		path: paths.contentPath,
@@ -192,16 +185,14 @@ export const pages = createCollection((locale) => {
 			}),
 			content: fields.mdx({
 				label: "Content",
-				options: createContentFieldOptions(paths.assetPath),
+				options: createContentFieldOptions(paths),
 				components: {},
 			}),
 		},
 	});
 });
 
-export const links = createCollection((locale) => {
-	const paths = createCollectionPaths("/links/", locale);
-
+export const links = createCollection("/links/", (paths, locale) => {
 	return collection({
 		label: createLabel("Links", locale),
 		path: paths.contentPath,
@@ -223,7 +214,7 @@ export const links = createCollection((locale) => {
 			}),
 			content: fields.mdx({
 				label: "Description",
-				options: createContentFieldOptions(paths.assetPath),
+				options: createContentFieldOptions(paths),
 				components: {},
 			}),
 		},

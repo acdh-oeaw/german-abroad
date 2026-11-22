@@ -27,27 +27,25 @@ const content = await request(createImprintUrl(locale), { responseType: "text" }
 <Layout locale={locale} title={title}>
 	<main class="mb-2xl">
 		<section class:list={[image?.src && "border-b border-neutral-200"]} class="relative">
-			{
-				image?.src ? (
-					<figure>
-						<img
-							alt=""
-							class="absolute inset-0 size-full object-cover"
-							loading="eager"
-							src={image.src}
-						/>
-						{image.caption ? (
-							<figcaption class="absolute bottom-1.5 right-2 z-10 text-xs font-medium text-neutral-300">
-								{image.caption}
-							</figcaption>
-						) : null}
-						<ImageOverlay />
-					</figure>
-				) : null
-			}
+			{image?.src ? (
+				<figure>
+					<img
+						alt=""
+						class="absolute inset-0 size-full object-cover"
+						loading="eager"
+						src={image.src}
+					/>
+					{image.caption ? (
+						<figcaption class="absolute right-2 bottom-1.5 z-10 text-xs font-medium text-neutral-300">
+							{image.caption}
+						</figcaption>
+					) : null}
+					<ImageOverlay />
+				</figure>
+			) : null}
 			<div
 				class:list={[image?.src ? "text-white" : "border-b border-neutral-200"]}
-				class="container relative py-2xl"
+				class="relative container py-2xl"
 			>
 				<div class="grid gap-y-sm">
 					<h1 class="text-display lowercase">{title}.</h1>

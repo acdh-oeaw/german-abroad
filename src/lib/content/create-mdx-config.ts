@@ -1,5 +1,4 @@
 import type { CompileOptions } from "@mdx-js/mdx";
-import withSyntaxHighlighter from "@shikijs/rehype";
 import type { ElementContent } from "hast";
 import withHeadingIds from "rehype-slug";
 import withFrontmatter from "remark-frontmatter";
@@ -7,7 +6,6 @@ import withGfm from "remark-gfm";
 import withMdxFrontmatter from "remark-mdx-frontmatter";
 import withTypographicQuotes from "remark-smartypants";
 import type { Options as TypographicOptions } from "retext-smartypants";
-import type { BuiltinTheme, CodeOptionsThemes } from "shiki";
 
 import type { Locale } from "@/config/i18n.config";
 import { withCustomHeadingIds } from "@/lib/content/with-custom-heading-ids";
@@ -16,14 +14,6 @@ import { withIframeTitles } from "@/lib/content/with-iframe-titles";
 import { withImageImports } from "@/lib/content/with-image-imports";
 import { withMdxTableOfContents, withTableOfContents } from "@/lib/content/with-table-of-contents";
 import { createI18n } from "@/lib/i18n/create-i18n";
-
-const syntaxHighlighterConfig: CodeOptionsThemes<BuiltinTheme> = {
-	defaultColor: "light",
-	themes: {
-		light: "github-light",
-		dark: "github-dark",
-	},
-};
 
 const typographyConfig: Record<Locale, TypographicOptions> = {
 	de: {
@@ -83,7 +73,6 @@ export async function createMdxConfig(locale: Locale): Promise<CompileOptions> {
 			withTableOfContents,
 			withMdxTableOfContents,
 			withIframeTitles,
-			[withSyntaxHighlighter, syntaxHighlighterConfig],
 			withImageImports,
 		],
 	};

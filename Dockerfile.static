@@ -4,18 +4,26 @@
 # @see https://sharp.pixelplumbing.com/install#linux-memory-allocator
 
 # build
-FROM node:24-alpine AS build
-
-RUN corepack enable
+FROM node:26-alpine AS build
 
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 
+# node.js 26 no longer bundles corepack, so install the pnpm version pinned in `devEngines.packageManager`.
+COPY package.json /tmp/
+RUN npm install --global "pnpm@$(node -p "require('/tmp/package.json').devEngines.packageManager.version")" \
+	&& rm /tmp/package.json
+
 USER node
 
-COPY --chown=node:node .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY --chown=node:node package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN pnpm fetch
+# skip installing git hooks.
+ENV CI=true
+
+# install dependencies before copying the source, so content changes do not invalidate this layer.
+RUN --mount=type=cache,id=pnpm-store,target=/home/node/.local/share/pnpm/store,uid=1000,gid=1000 \
+	pnpm install --frozen-lockfile
 
 COPY --chown=node:node ./ ./
 
@@ -31,8 +39,6 @@ ARG PUBLIC_REDMINE_ID
 ENV ENV_VALIDATION=public
 
 ENV NODE_ENV=production
-
-RUN pnpm install --frozen-lockfile --offline
 
 RUN pnpm run build
 

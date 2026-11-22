@@ -11,23 +11,19 @@ export interface Props {
 const { href, image, title } = Astro.props;
 ---
 
-<article
-	class="relative overflow-hidden rounded-sm border border-neutral-200 shadow-raised transition hover:shadow-overlay"
->
+<article class="relative overflow-hidden rounded-sm border border-neutral-200 shadow-raised transition hover:shadow-overlay">
 	<div class="bg-mesh relative aspect-video border-b border-neutral-200">
-		{
-			image?.src ? (
-				<>
-					<img
-						alt=""
-						class="absolute inset-0 size-full object-cover"
-						loading="lazy"
-						src={image.src}
-					/>
-					<ImageOverlay variant="light" />
-				</>
-			) : null
-		}
+		{image?.src ? (
+			<>
+				<img
+					alt=""
+					class="absolute inset-0 size-full object-cover"
+					loading="lazy"
+					src={image.src}
+				/>
+				<ImageOverlay variant="light" />
+			</>
+		) : null}
 	</div>
 	<div class="grid content-start gap-y-xs p-md pb-lg">
 		<h3 class="text-lg font-strong text-text-strong">

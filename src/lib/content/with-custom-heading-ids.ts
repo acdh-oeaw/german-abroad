@@ -22,11 +22,11 @@ export function withCustomHeadingIds() {
 				return attribute.type === "mdxJsxAttribute" && attribute.name === "id";
 			})?.value;
 
-			assert(id, "`<HeadingId>` has no `id` prop.");
+			assert(typeof id === "string" && id !== "", "`<HeadingId>` has no `id` prop.");
 
-			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+			// oxlint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 			if (parent.properties.id == null) {
-				parent.properties.id = String(id as unknown);
+				parent.properties.id = id;
 			}
 
 			parent.children.splice(index, 1);
