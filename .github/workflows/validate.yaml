@@ -53,6 +53,12 @@ jobs:
           cache: true
           require-lockfile: true
 
+      # type-aware lint rules need astro's generated types, e.g. for `import.meta.env`.
+      - name: Generate types
+        run: pnpm run sync
+        env:
+          PUBLIC_APP_BASE_URL: "http://localhost:3000"
+
       - name: Format
         run: pnpm run format:check
 
