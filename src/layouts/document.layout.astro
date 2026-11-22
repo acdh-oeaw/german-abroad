@@ -1,7 +1,7 @@
 ---
 import "@fontsource-variable/inter/standard.css";
 import "@fontsource-variable/inter/standard-italic.css";
-import "tailwindcss/tailwind.css";
+import "@/styles/tailwind.css";
 import "@/styles/index.css";
 
 import { env } from "@/config/env.config";
@@ -25,11 +25,9 @@ const googleSiteVerification = env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="color-scheme" content="light" />
-		{
-			googleSiteVerification ? (
-				<meta name="google-site-verification" content={googleSiteVerification} />
-			) : null
-		}
+		{googleSiteVerification ? (
+			<meta name="google-site-verification" content={googleSiteVerification} />
+		) : null}
 
 		<title>{[title, metadata.data.title].join(" | ")}</title>
 		<meta name="description" content={metadata.data.description} />

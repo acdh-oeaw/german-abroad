@@ -1,7 +1,3 @@
-.container {
-	@apply mx-auto w-full max-w-screen-lg px-sm md:px-md;
-}
-
 .grid-container {
 	--grid-column-count: 4;
 	--grid-column-width: var(--space-64);

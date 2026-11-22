@@ -1,9 +1,11 @@
-onlyBuiltDependencies:
-  - esbuild
-  - sharp
-  - simple-git-hooks
-  - unrs-resolver
+allowBuilds:
+  esbuild: true
+  lefthook: true
+  sharp: true
+
+engineStrict: true
+
+minimumReleaseAgeExclude:
+  - "@acdh-oeaw/keystatic-lib@0.8.2"
 
 shellEmulator: true
-
-strictDepBuilds: true
