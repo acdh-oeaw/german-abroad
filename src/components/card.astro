@@ -1,4 +1,7 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
 import ImageOverlay from "@/components/image-overlay.astro";
 import LocaleLink from "@/components/locale-link.astro";
 
@@ -9,18 +12,38 @@ export interface Props {
 }
 
 const { href, image, title } = Astro.props;
+
+// Import CMS images so Astro can generate thumbnails instead of serving the originals.
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/public/assets/**/*.{avif,jpeg,jpg,png,webp}",
+);
+const source = image?.src ? await images[`/public${image.src}`]?.() : undefined;
 ---
 
 <article class="relative overflow-hidden rounded-sm border border-neutral-200 shadow-raised transition hover:shadow-overlay">
 	<div class="bg-mesh relative aspect-video border-b border-neutral-200">
 		{image?.src ? (
 			<>
-				<img
-					alt=""
-					class="absolute inset-0 size-full object-cover"
-					loading="lazy"
-					src={image.src}
-				/>
+				{source ? (
+					<Image
+						alt=""
+						class="absolute inset-0 size-full object-cover"
+						format="webp"
+						width={480}
+						height={270}
+						widths={[320, 480, 640, 960]}
+						sizes="(min-width: 64rem) 19rem, (min-width: 60rem) calc((100vw - 6rem) / 3), (min-width: 48rem) calc((100vw - 4.5rem) / 2), (min-width: 39.5rem) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)"
+						loading="lazy"
+						src={source.default}
+					/>
+				) : (
+					<img
+						alt=""
+						class="absolute inset-0 size-full object-cover"
+						loading="lazy"
+						src={image.src}
+					/>
+				)}
 				<ImageOverlay variant="light" />
 			</>
 		) : null}
