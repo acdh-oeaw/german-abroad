@@ -18,7 +18,7 @@ service:
   internalPort: 3000
 ingress:
   enabled: true
-  path: "/api/health"
+  path: "/"
   className: "traefik"
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
