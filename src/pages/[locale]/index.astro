@@ -4,6 +4,7 @@ import { compareDesc } from "date-fns";
 
 import Card from "@/components/card.astro";
 import GridList from "@/components/grid-list.astro";
+import HeroImage from "@/components/hero-image.astro";
 import ImageOverlay from "@/components/image-overlay.astro";
 import SectionLead from "@/components/section-lead.astro";
 import SectionTitle from "@/components/section-title.astro";
@@ -36,12 +37,7 @@ const formatter = getFormatter(locale);
 		<section class:list={[hero.image?.src && "border-b border-neutral-200"]} class="relative">
 			{hero.image?.src ? (
 				<figure>
-					<img
-						alt=""
-						class="absolute inset-0 size-full object-cover"
-						loading="eager"
-						src={hero.image.src}
-					/>
+					<HeroImage src={hero.image.src} />
 					<ImageOverlay />
 					{hero.image.caption ? (
 						<figcaption class="absolute right-2 bottom-2 z-10 text-xs font-medium">
