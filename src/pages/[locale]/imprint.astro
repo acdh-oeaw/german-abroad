@@ -2,6 +2,7 @@
 import { request } from "@acdh-oeaw/lib";
 import type { GetStaticPathsResult } from "astro";
 
+import HeroImage from "@/components/hero-image.astro";
 import ImageOverlay from "@/components/image-overlay.astro";
 import Section from "@/components/section.astro";
 import { locales } from "@/config/i18n.config";
@@ -29,12 +30,7 @@ const content = await request(createImprintUrl(locale), { responseType: "text" }
 		<section class:list={[image?.src && "border-b border-neutral-200"]} class="relative">
 			{image?.src ? (
 				<figure>
-					<img
-						alt=""
-						class="absolute inset-0 size-full object-cover"
-						loading="eager"
-						src={image.src}
-					/>
+					<HeroImage src={image.src} />
 					{image.caption ? (
 						<figcaption class="absolute right-2 bottom-1.5 z-10 text-xs font-medium text-neutral-300">
 							{image.caption}
